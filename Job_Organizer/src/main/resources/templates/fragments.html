@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <title th:text="${title}">Job Organizer</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
 </head>
-<body class="container">
 
+<body class="container">
 <nav th:fragment="navLinks" class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color:#2C3E50;">
     <div class="container-fluid">
         <a class="navbar-brand">Job Organizer</a>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarColor01" style="">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/jobs">Home </a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/jobs/add">Add Job</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/interviews">Interview</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="/search">Search</a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="/jobs">Home </a></li>
+                <li class="nav-item"><a class="nav-link" href="/jobs/add">Add Job</a></li>
+                <li class="nav-item"><a class="nav-link" href="/interviews">Interview</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
             </ul>
         </div>
     </div>
 </nav>
+</body>
+</html>
 
 
