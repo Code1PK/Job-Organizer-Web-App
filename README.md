@@ -1,1 +1,1 @@
-# Job-Seeker-Web-App
+# Job Organizer Web App
