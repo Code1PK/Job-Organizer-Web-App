@@ -28,19 +28,29 @@ This idea came from our user experience, the User is able to hold all job applic
 </p>
 
 <!-- BUILT WITH -->
-<h2 id="built-with"> :floppy_disk: Built with</h2>
--	Java  
--	Spring Boot  
+<h2 id="built-with"> :hammer: Built with</h2>
+<img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"/>  
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+<img src="https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Java-1572B6?style=for-the-badge&logo=java&logoColor=white"/>
+<img src=""/>
+<img src=""/>
+<img src=""/>
+-	Java   
 -	MySQL  
 -	Hibernate  
--	Thymeleaf templates  
--	Bootstrap 
+-	Thymeleaf templates   
 
 <!-- FEATURES -->
-<h2 id="features"> :hammer: Features</h2>
+<h2 id="features"> :rocket: Features</h2>
 <p align="justify"> 
   <ol>
-    <li><b></b></li> 
-    <li><b></b></li>
-    <li><b></b></li>
+    <li><b>User login: </b>Users will be able to create accounts and log in to the application.</li> 
+    <li><b>Create, read, update and delete application: </b>Users will be able to create new application when logged in. The new application will appear in the user’s profile. Then users will be able to add interviews.</li>
+    <li><b>Create, read, update and delete interview: </b>Users will be able to create multiple interviews with notes, dates, and contacts in the existing application.</li>
+    <li><b>Search: </b>Users will be able to search for applications containing given text.</li>
+    <li><b>List: </b>Users can see a list of applications and a list of interviews.</li>
   </ol>
