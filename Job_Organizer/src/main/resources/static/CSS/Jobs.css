@@ -1,0 +1,54 @@
+body {
+padding-top:80px
+}
+
+$dark_t1: #2C3E50;
+$dark_t2: #19242f;
+$dark_t3: #6b8dae;
+$dark_t4: #7c99b7;
+$dark_t5: #000001;
+$dark_t6: #141c25;
+$dark_t7: #1f2c38;
+$dark_t8: #000000;
+$dark_t9: #89a4be;
+
+$dark_shadow: rgba(44, 62, 80, 0.5);
+$dark_text_color_dark_bright: #fff;
+
+
+.btn-dark {
+  color: $dark_text_color_dark_bright;
+  background-color: $dark_t1;
+  border-color: $dark_t1;
+}
+
+.btn-dark:hover {
+  color: $dark_text_color_dark_bright;
+  background-color: $dark_t7;
+  border-color: $dark_t2;
+}
+
+.btn-dark:focus, .btn-dark.focus {
+  box-shadow: 0 0 0 0.2rem $dark_shadow;
+}
+
+.btn-dark.disabled, .btn-dark:disabled {
+  color: $dark_text_color_dark_bright;
+  background-color: $dark_t1;
+  border-color: $dark_t1;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active, .btn-dark:not(:disabled):not(.disabled).active, .show > .btn-dark.dropdown-toggle {
+  color: $dark_text_color_dark_bright;
+  background-color: $dark_t2;
+  border-color: $dark_t6;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active:focus, .btn-dark:not(:disabled):not(.disabled).active:focus, .show > .btn-dark.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem $dark_shadow;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem #ced4da;
+}
+
