@@ -62,7 +62,7 @@ This idea came from our user experience, the User is able to hold all job applic
 <p align="justify">
 
 - [x] Add Log In page
-- [x] Add Sing Up page
+- [x] Add Sign Up page
 - [ ] Add Create Job Application form
 - [ ] Add a List of Jobs
   
