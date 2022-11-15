@@ -18,18 +18,18 @@ $dark_text_color_dark_bright: #fff;
 
 .btn-dark {
   color: $dark_text_color_dark_bright;
-  background-color: $dark_t1;
-  border-color: $dark_t1;
+  background-color: #2C3E50;
+  border-color: #2C3E50;
 }
 
 .btn-dark:hover {
   color: $dark_text_color_dark_bright;
-  background-color: $dark_t7;
-  border-color: $dark_t2;
+  background-color: #2C3E50;
+  border-color: #2C3E50;
 }
 
 .btn-dark:focus, .btn-dark.focus {
-  box-shadow: 0 0 0 0.2rem $dark_shadow;
+  box-shadow: 0 0 0 0.2rem #ced4da;
 }
 
 .btn-dark.disabled, .btn-dark:disabled {
@@ -50,5 +50,7 @@ $dark_text_color_dark_bright: #fff;
 
 .form-control:focus {
   box-shadow: 0 0 0 0.2rem #ced4da;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }
 
