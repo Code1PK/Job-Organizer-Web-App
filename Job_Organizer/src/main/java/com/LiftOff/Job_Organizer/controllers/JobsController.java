@@ -10,4 +10,9 @@ public class JobsController {
     public String displayAddJobForm() {
         return "jobs/add";
     }
+
+    @GetMapping("jobs/details")
+    public String displayJobDetails() {
+        return "jobs/details";
+    }
 }

@@ -15,11 +15,9 @@ $dark_t9: #89a4be;
 $dark_shadow: rgba(44, 62, 80, 0.5);
 $dark_text_color_dark_bright: #fff;
 
-
 .btn-dark {
-  color: $dark_text_color_dark_bright;
-  background-color: #2C3E50;
-  border-color: #2C3E50;
+  background-color: #2c3e50 !important;
+  border-color: #2c3e50 !important;
 }
 
 .btn-dark:hover {
@@ -48,9 +46,23 @@ $dark_text_color_dark_bright: #fff;
   box-shadow: 0 0 0 0.2rem $dark_shadow;
 }
 
+.btn-outline-dark:not(:disabled):not(.disabled).active, .btn-outline-dark:not(:disabled):not(.disabled):active, .show>.btn-outline-dark.dropdown-toggle {
+    color: #fff;
+    background-color: #2C3E50 !important;
+    border-color: #2C3E50 !important;
+}
 .form-control:focus {
   box-shadow: 0 0 0 0.2rem #ced4da;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
+.a {
+  color: #2C3E50 !important;
+  text-decoration: $link-decoration;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
 
+  @include hover() {
+    color: #2C3E50 !important;
+    text-decoration: $link-hover-decoration;
+  }
+}
