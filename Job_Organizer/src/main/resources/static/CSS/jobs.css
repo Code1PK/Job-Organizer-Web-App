@@ -1,0 +1,68 @@
+body {
+padding-top:80px
+}
+
+$dark_t1: #2C3E50;
+$dark_t2: #19242f;
+$dark_t3: #6b8dae;
+$dark_t4: #7c99b7;
+$dark_t5: #000001;
+$dark_t6: #141c25;
+$dark_t7: #1f2c38;
+$dark_t8: #000000;
+$dark_t9: #89a4be;
+
+$dark_shadow: rgba(44, 62, 80, 0.5);
+$dark_text_color_dark_bright: #fff;
+
+.btn-dark {
+  background-color: #2c3e50 !important;
+  border-color: #2c3e50 !important;
+}
+
+.btn-dark:hover {
+  color: $dark_text_color_dark_bright;
+  background-color: #2C3E50;
+  border-color: #2C3E50;
+}
+
+.btn-dark:focus, .btn-dark.focus {
+  box-shadow: 0 0 0 0.2rem #ced4da;
+}
+
+.btn-dark.disabled, .btn-dark:disabled {
+  color: $dark_text_color_dark_bright;
+  background-color: $dark_t1;
+  border-color: $dark_t1;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active, .btn-dark:not(:disabled):not(.disabled).active, .show > .btn-dark.dropdown-toggle {
+  color: $dark_text_color_dark_bright;
+  background-color: $dark_t2;
+  border-color: $dark_t6;
+}
+
+.btn-dark:not(:disabled):not(.disabled):active:focus, .btn-dark:not(:disabled):not(.disabled).active:focus, .show > .btn-dark.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem $dark_shadow;
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled).active, .btn-outline-dark:not(:disabled):not(.disabled):active, .show>.btn-outline-dark.dropdown-toggle {
+    color: #fff;
+    background-color: #2C3E50 !important;
+    border-color: #2C3E50 !important;
+}
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem #ced4da;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.a {
+  color: #2C3E50 !important;
+  text-decoration: $link-decoration;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+
+  @include hover() {
+    color: #2C3E50 !important;
+    text-decoration: $link-hover-decoration;
+  }
+}

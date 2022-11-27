@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container"> </body>
+<nav th:replace="fragments :: navLinks"></nav>
+<body>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Company</th>
+        <th scope="col">Title</th>
+        <th scope="col">Applied date</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table-light">
+        <th scope="row">Amazon</th>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td><a  class="btn btn-outline-dark btn-sm" href="jobs/details" role="button">View</a></td>
+    </tr>
+    <tr>
+        <th scope="row">Verizon</th>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td><a  class="btn btn-outline-dark btn-sm" href="jobs/details" role="button">View</a></td>
+    </tr>
+    <tr>
+        <th scope="row">Oracle</th>
+        <td>Column content</td>
+        <td>Column content</td>
+        <td><a  class="btn btn-outline-dark btn-sm" href="jobs/details" role="button">View</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
