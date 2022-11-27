@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
 
 @Entity
-public class Customer {
+public class User {
 
    @Id
    @GeneratedValue
