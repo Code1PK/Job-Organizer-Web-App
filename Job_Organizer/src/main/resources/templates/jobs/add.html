@@ -9,30 +9,41 @@
 </head>
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
+<!--<p th:text="${errorMsg}" style="color:red;"></p>-->
 <main class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-8">
             <h3>Add Job</h3>
-<form>
+<form method="post">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="enter job title" required="required">
+            <label for="title" >Title</label>
+            <input type="text" th:field="${job.title}" class="form-control" id="title" placeholder="enter job title" required="required">
+<!--            <p class="error" th:errors="${job.title}"></p>-->
+            <div class="invalid-feedback" th:errors="${job.title}"></div>
         </div>
     <div class="form-group">
         <label for="company">Company</label>
-        <input type="text" class="form-control" id="company" placeholder="enter company name" required="required">
+        <input type="text" th:field="${job.company}" class="form-control" id="company" placeholder="enter company name" required="required">
+<!--        <p class="error" th:errors="${job.company}"></p>-->
+        <div class="invalid-feedback" th:errors="${job.company}"></div>
     </div>
     <div class="form-group">
         <label for="location">Location</label>
-        <input type="text" class="form-control" id="location" placeholder="enter location" required="required">
+        <input type="text" th:field="${job.location}" class="form-control" id="location" placeholder="enter location" required="required">
+<!--        <p class="error" th:errors="${job.location}"></p>-->
+        <div class="invalid-feedback" th:errors="${job.location}"></div>
     </div>
     <div class="form-group">
         <label for="jobUrl">Job URL</label>
-        <input type="text" class="form-control" id="JobUrl" placeholder="enter job URL" required="required">
+        <input type="text" th:field="${job.jobUrl}" class="form-control" id="JobUrl" placeholder="enter job URL" required="required">
+<!--        <p class="error" th:errors="${job.jobUrl}"></p>-->
+        <div class="invalid-feedback" th:errors="${job.jobUrl}"></div>
     </div>
     <div class="form-group">
         <label for="description">Job description</label>
-        <textarea class="form-control" id="description" rows="3" placeholder="enter job description" required="required"></textarea>
+        <textarea type="textarea" th:field="${job.description}" class="form-control" id="description" rows="3" placeholder="enter job description" required="required"></textarea>
+<!--        <p class="error" th:errors="${job.description}"></p>-->
+        <div class="invalid-feedback" th:errors="${job.description}"></div>
     </div>
     <button type="submit" class="btn btn-dark">Save</button>
 </form>
