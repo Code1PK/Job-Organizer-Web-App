@@ -30,7 +30,7 @@ public class signUpController {
             return "signUp";
         }
         customerRepository.save(newCustomer);
-        return"/";
+        return"redirect:";
     }
 
 }
