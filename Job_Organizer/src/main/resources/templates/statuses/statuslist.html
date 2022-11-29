@@ -10,7 +10,7 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
-<<p th:unless="${interviewStatus} and ${interviewStatus.size()}">No Status Listed</p>
+<p th:unless="${interviewStatus} and ${interviewStatus.size()}">No Status Listed</p>
     <thead>
     <tr>
         <th>Statuses</th>

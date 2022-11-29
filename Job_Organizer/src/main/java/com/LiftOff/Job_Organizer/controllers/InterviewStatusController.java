@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value="interviews/statuslist.html")
+@RequestMapping("/statuses")
 public class InterviewStatusController {
 
     @Autowired
@@ -24,22 +24,22 @@ public class InterviewStatusController {
     public String displayInterviewStatus(Model model){
         model.addAttribute("title", "All Statuses");
         model.addAttribute("interviewStatus", interviewStatusRepository.findAll());
-        return "/interviews/statuslist";
+        return "/statuses/statuslist";
     }
 
-    @GetMapping("/interviews/addstatus")
+    @GetMapping("addstatus")
     public String displayCreateStatusForm(Model model){
         model.addAttribute("title", "Add a Status");
         model.addAttribute(new InterviewStatus());
-        return "/interviews/addstatus";
+        return "/statuses/addstatus";
     }
 
-    @PostMapping("/interviews/addstatus")
+    @PostMapping("addstatus")
     public String processCreateStatusForm(@ModelAttribute @Valid InterviewStatus interviewStatus, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add a Status");
             model.addAttribute(interviewStatus);
-            return "/interviews/addstatus";
+            return "/statuses/addstatus";
         }
 
         interviewStatusRepository.save(interviewStatus);

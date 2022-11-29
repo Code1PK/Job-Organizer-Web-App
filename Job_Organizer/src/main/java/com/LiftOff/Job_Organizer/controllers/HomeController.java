@@ -14,4 +14,9 @@ public class HomeController {
     public String displayListOfInterviews(){
         return "/interviews/list";
     }
+
+    @GetMapping("/statuses/")
+    public String displayListOfStatuses(){
+        return "/statuses/statuslist";
+    }
 }

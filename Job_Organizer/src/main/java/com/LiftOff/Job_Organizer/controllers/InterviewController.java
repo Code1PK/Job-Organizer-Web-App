@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/interviews/list")
+@RequestMapping("/interviews/")
 public class InterviewController {
 
     @Autowired
@@ -45,7 +45,7 @@ public class InterviewController {
        return "/interviews/list";
     }
 
-    @GetMapping("/interviews/add")
+    @GetMapping("add")
     public String displayAddInterviewForm(Model model){
         model.addAttribute("title", "Add Interview");
         model.addAttribute(new Interview());
@@ -53,7 +53,7 @@ public class InterviewController {
         return "/interviews/add";
     }
 
-    @PostMapping("/interviews/add")
+    @PostMapping("add")
     public String processAddInterviewForm(@ModelAttribute @Valid Interview interview, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Interview");
@@ -65,14 +65,14 @@ public class InterviewController {
         return "redirect:";
     }
 
-    @GetMapping("/interviews/delete")
+    @GetMapping("delete")
     public String displayDeleteInterviewForm(Model model){
         model.addAttribute("title", "Delete Interview");
         model.addAttribute("interviews", interviewRepository.findAll());
         return "/interviews/delete";
     }
 
-    @PostMapping("/interviews/delete")
+    @PostMapping("delete")
     public String processDeleteInterviewForm(@RequestParam(required = false) int[] interviewIds){
         if (interviewIds != null){
             for (int id : interviewIds){
@@ -83,7 +83,7 @@ public class InterviewController {
         return "redirect:";
     }
 
-    @GetMapping("/interviews/details")
+    @GetMapping("details")
     public String displayInterviewDetails(@RequestParam Integer interviewId, Model model){
 
         Optional<Interview> result = interviewRepository.findById(interviewId);
