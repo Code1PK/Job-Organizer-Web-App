@@ -11,8 +11,10 @@
 <nav th:replace="fragments :: navLinks"></nav>
 
 
-<h3>Title:</h3>
-<p th:text="${job.title}"></p>
+<h3>
+<!--    <span>Title: </span>-->
+    <span th:text="${job.title}"></span></h3>
+
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link" data-bs-toggle="tab" href="#jobApplication" aria-selected="true" role="tab">Job Application</a>
@@ -27,23 +29,26 @@
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade show active" id="jobApplication" role="tabpanel">
         <div class="card mb-3">
-            <h5 class="card-header">
-                <a>Company: </a>
-                <p th:text="${job.company}"></p>
-                <a>Location: </a>
-                <p th:text="${job.location}"></p>
-            </h5>
+            <h6 class="card-header">
+                <p>
+<!--                    <span> Company: </span>-->
+                    <span th:text="${job.company}"></span></p>
+                <p>
+<!--                    <span>Location: </span>-->
+                   <span th:text="${job.location}"></span></p>
+            </h6>
 <!--            <div class="card-body">-->
 <!--                <h5 class="card-title text-muted">Company: </h5>-->
 <!--                <h5 class="card-subtitle text-muted">Location: </h5>-->
 <!--            </div>-->
             <div class="card-body">
-                <p class="card-text">Description: </p>
-                <p th:text="${job.description}"></p>
+                <span class="card-text text-muted">Description: </span>
+                <span th:text="${job.description}"></span>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Job URL: </li>
-                <p th:text="${job.jobUrl}"></p>
+                <li class="list-group-item">
+                    <span class="text-muted">URL: </span>
+                <span th:text="${job.jobUrl}"></span></li>
 <!--                <li class="list-group-item">Applied date: </li>-->
             </ul>
             <div class="card-footer text-muted">

@@ -2,6 +2,10 @@
   color: red;
 }
 
+span {
+  display: inline;
+}
+
 body {
 padding-top:80px
 }

@@ -28,17 +28,12 @@ public class JobsController {
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Job Application");
+            model.addAttribute("title", "Add Job");
             return "jobs/add";
         }
         jobRepository.save(newJob);
         return "redirect:/jobs";
     }
-
-//    @GetMapping("jobs/details")
-//    public String displayJobDetails() {
-//        return "jobs/details";
-//    }
 
     @GetMapping("jobs/details/{Id}")
     public String displayJobDetails(@PathVariable Integer Id, Model model) {
@@ -55,7 +50,7 @@ public class JobsController {
 
         return "jobs/details";
     }
-    }
+}
 
 
 
