@@ -17,10 +17,14 @@ public class JobsController {
     @Autowired
     JobRepository jobRepository;
 
+    @Autowired
+    JobRepository jobStatusRepository;
+
     @GetMapping("jobs/add")
     public String displayAddJobForm(Model model) {
         model.addAttribute(new Job());
         model.addAttribute("title", "Add Job Application");
+        model.addAttribute("jobStatus", jobStatusRepository.findAll());
         return "jobs/add";
     }
 

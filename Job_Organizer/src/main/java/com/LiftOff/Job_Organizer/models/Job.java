@@ -1,9 +1,12 @@
 package com.LiftOff.Job_Organizer.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Job extends AbstractEntity{
@@ -29,8 +32,11 @@ public class Job extends AbstractEntity{
 
     @NotNull(message="Description required!")
     @NotBlank(message="Do not leave blank!")
-    @Size(min = 3, max = 3000)
+    @Size(min = 3, max = 20000)
     private String description;
+
+    @ManyToMany
+    private final List<JobStatus> jobStatus = new ArrayList<>();
 
     public Job() {}
 
