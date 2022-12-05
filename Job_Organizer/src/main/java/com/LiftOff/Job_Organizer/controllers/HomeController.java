@@ -15,8 +15,8 @@ public class HomeController {
         return "/interviews/list";
     }
 
-    @GetMapping("/statuses/")
-    public String displayListOfStatuses(){
-        return "/statuses/statuslist";
+    @GetMapping("/companies")
+    public String displayListOfCompanies(){
+        return "/companies/list";
     }
 }

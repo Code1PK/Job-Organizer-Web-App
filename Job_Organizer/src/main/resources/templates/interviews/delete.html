@@ -10,13 +10,15 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
+<strong><p th:unless="${interview} and ${interview.size()}">No interviews listed!</p></strong>
+
 <form method="post">
 
-    <th:block th:each="interviews : ${interview}">
+    <th:block th:each="interview : ${interviews}">
         <div class="form-group">
             <label>
-                <span th:text="${interviews.name}"></span>
-                <input type="checkbox" name="interviewIds" th:value="${interviews.id}">
+                <span th:text="${interview.name}"></span>
+                <input type="checkbox" name="interviewIds" th:value="${interview.id}">
             </label>
         </div>
     </th:block>

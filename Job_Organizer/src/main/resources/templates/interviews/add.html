@@ -18,11 +18,12 @@
             <form method="post" action="/interviews/add">
                 <div class="form-group">
                     <label for="title">Job Title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Enter Job Title" required="required">
+                    <input th:field="${interview.name}" class="form-control" id="title" placeholder="Enter Job Title" required="required">
+                    <p class="'error" th:errors="${interview.name}"></p>
                 </div>
                 <div class="form-group">
                     <label for="company">Company</label>
-                    <input type="text" class="form-control" id="company" placeholder="Enter Company Name" required="required">
+                    <input th:field="${interview.company.name}" class="form-control" id="company" placeholder="Enter Company Name" required="required">
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
@@ -50,9 +51,24 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Job Description</label>
-                    <textarea class="form-control" id="description" rows="3" placeholder="Enter Important Interview Notes" required="required"></textarea>
+                    <input th:field="${interview.interviewDetails.description}" class="form-control" id="description" rows="3" placeholder="Enter Important Interview Notes" required="required">
                 </div>
-                <button type="submit" class="btn btn-dark">Save</button>
+
+                <div class="form-group">
+                    <label>Interview Status</label>
+                    <select class="form-control" id="statusDropDown">
+                        <option value="" disabled selected>Select Interview Status</option>
+                        <option th:value="Pending">Pending Response</option>
+                        <option th:value="Scheduled">Interview Scheduled</option>
+                        <option th:value="Complete_Response">Interview Complete</option>
+                        <option th:value="Hired">Hired</option>
+                        <option th:value="Rejected">Rejected</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Add Interview" class="btn btn-success">
+                </div>
             </form>
         </div>
     </div>
