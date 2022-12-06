@@ -9,8 +9,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class Interview extends AbstractEntity {
 
-    @NotBlank(message="Company name is Required")
-    @Size(min=3, max=50, message="Company name must be between 3 and 50 characters")
+    @NotBlank(message="Job name is Required")
+    @Size(min=3, max=50, message="Job name must be between 3 and 50 characters")
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -22,9 +22,21 @@ public class Interview extends AbstractEntity {
     @NotNull(message = "Company is required!")
     private Company company;
 
-    public Interview(String name, Company company){
+    @NotNull(message="Location is required!")
+    @NotBlank(message="Location is required!")
+    @Size(min=3, max=100)
+    private String location;
+
+    @NotNull(message="Enter job URL")
+    @NotBlank(message="Must not be blank!")
+    private String jobURL;
+
+
+    public Interview(String name, Company company, String location, String jobURL){
         this.name = name;
         this.company = company;
+        this.location = location;
+        this.jobURL = jobURL;
     }
 
     public Interview(){}
@@ -43,6 +55,22 @@ public class Interview extends AbstractEntity {
 
     public void setCompany(Company company){
         this.company = company;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getJobURL() {
+        return jobURL;
+    }
+
+    public void setJobURL(String jobURL) {
+        this.jobURL = jobURL;
     }
 
     public InterviewDetails getInterviewDetails(){

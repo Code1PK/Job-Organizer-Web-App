@@ -27,7 +27,10 @@
         </tr>
     </thead>
     <tr th:each="interview : ${interviews}">
+        <th>Job Title</th>
         <td th:text="${interview.name}"></td>
+        <th>Company</th>
+        <td th:text="${interview.company}"></td>
     </tr>
 </table>
 </body>

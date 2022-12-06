@@ -17,24 +17,29 @@
             <h3>Add Interview</h3>
             <form method="post" action="/interviews/add">
                 <div class="form-group">
-                    <label for="title">Job Title</label>
+                    <label>Job Title</label>
                     <input th:field="${interview.name}" class="form-control" id="title" placeholder="Enter Job Title" required="required">
                     <p class="'error" th:errors="${interview.name}"></p>
                 </div>
                 <div class="form-group">
-                    <label for="company">Company</label>
-                    <input th:field="${interview.company.name}" class="form-control" id="company" placeholder="Enter Company Name" required="required">
+                    <label>Company</label>
+                    <select th:field="${interview.company}">
+                        <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.name}"></option>
+                        <p class="error" th:errors="${interview.company}"></p>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" class="form-control" id="location" placeholder="Enter the Location" required="required">
+                    <label>Location</label>
+                    <input type="text" th:field=${interview.location} class="form-control" id="location" placeholder="Enter the Location" required="required">
+                    <p class="error" th:errors="${interview.location}"></p>
                 </div>
                 <div class="form-group">
-                    <label for="jobUrl">Job URL</label>
-                    <input type="text" class="form-control" id="jobUrl" placeholder="Insert Job URL" required="required">
+                    <label>Job URL</label>
+                    <input type="text" th:field=${interview.jobURL} class="form-control" id="jobUrl" placeholder="Insert Job URL" required="required">
+                    <p class="error" th:errors="${interview.jobURL}"></p>
                 </div>
                 <div class="form-group">
-                    <label for="interviewDate">Interview Date</label>
+                    <label>Interview Date</label>
                     <input type="date" class="form-control" id="interviewDate">
                     <script>
                         var today = new Date();
@@ -50,7 +55,7 @@
                     </script>
                 </div>
                 <div class="form-group">
-                    <label for="description">Job Description</label>
+                    <label>Job Description</label>
                     <input th:field="${interview.interviewDetails.description}" class="form-control" id="description" rows="3" placeholder="Enter Important Interview Notes" required="required">
                 </div>
 
