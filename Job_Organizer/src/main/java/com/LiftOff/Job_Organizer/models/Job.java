@@ -1,12 +1,10 @@
 package com.LiftOff.Job_Organizer.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Job extends AbstractEntity{
@@ -35,18 +33,19 @@ public class Job extends AbstractEntity{
     @Size(min = 3, max = 20000)
     private String description;
 
-    @ManyToMany
-    private final List<JobStatus> jobStatus = new ArrayList<>();
+    @ManyToOne
+    private JobStatus jobStatus;
 
     public Job() {}
 
-    public Job(String title, String company, String location, String jobUrl, String description) {
+    public Job(String title, String company, String location, String jobUrl, String description, JobStatus jobStatus) {
         super();
         this.title = title;
         this.company = company;
         this.location = location;
         this.jobUrl = jobUrl;
         this.description = description;
+        this.jobStatus = jobStatus;
     }
 
     public String getTitle() {
@@ -87,6 +86,14 @@ public class Job extends AbstractEntity{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public JobStatus getJobStatus() {
+        return jobStatus;
+    }
+
+    public void setJobStatus(JobStatus jobStatus) {
+        this.jobStatus = jobStatus;
     }
 
     @Override

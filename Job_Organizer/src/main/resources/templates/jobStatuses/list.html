@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+
+<!--<p th:unless="${jobStatus} and ${jobStatus.size()}">No Status Listed</p>-->
+<!--<thead>-->
+<!--<tr>-->
+<!--    <th>Statuses</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tr th:each="status : ${jobStatus}">-->
+<!--    <td th:text="${jobStatus.name}">-->
+<!--    <a th:href="@{'/jobStatus/add'}">Add Job Status</a>-->
+<!--    </td>-->
+<!--</tr>-->
+
+
+<div class="container body-content">
+    <h3>Job Statuses</h3>
+    <ul>
+        <li th:each="jobStatus : ${jobStatuses}">
+            <a  th:text="${jobStatus.name}"></a>
+        </li>
+    </ul>
+    <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobs/jobStatuses/add'}" role="button">Add New</a>
+</div>
+</body>
+</html>

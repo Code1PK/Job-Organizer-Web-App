@@ -41,14 +41,13 @@
         <p class="error" th:errors="${job.description}"></p>
     </div>
     <div class="form-group">
-        <label for="jobStatus" class="form-label mt-4">Job status</label>
-        <select class="form-select" id="jobStatus">
-            <option>Saved</option>
-            <option>Applied</option>
-            <option>Interview</option>
-            <option>Rejected</option>
-            <option>Archived</option>
+        <label th:for="jobStatus">Job Status</label>
+        <select name="jobStatusId">
+            <option th:each="jobStatus : ${jobStatus}"
+                    th:text="${jobStatus.name}"
+                    th:value="${jobStatus.id}"></option>
         </select>
+        <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobStatuses/add'}" role="button">Add New</a>
     </div>
     <button type="submit" class="btn btn-dark">Save</button>
 </form>

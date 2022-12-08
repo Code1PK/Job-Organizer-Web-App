@@ -30,6 +30,7 @@
             <h6 class="card-header">
                 <p><span> Company: </span><span th:text="${job.company}"></span></p>
                 <p><span>Location: </span><span th:text="${job.location}"></span></p>
+                <p><span>Job Status: </span><span th:text="${job.jobStatus.name}"></span></p>
             </h6>
             <div class="card-body">
                 <span class="card-text">Description: </span>
@@ -42,7 +43,7 @@
             </ul>
             <div class="card-footer text-muted">
                 <a  class="btn btn-outline-dark btn-sm" href="add" role="button">Edit</a>
-                <a  class="btn btn-outline-dark btn-sm" href="jobs/delete" role="button">Delete</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/delete/'}}" role="button">Delete</a>
             </div>
         </div>
     </div>

@@ -1,12 +1,15 @@
 package com.LiftOff.Job_Organizer.controllers;
 
 import com.LiftOff.Job_Organizer.data.JobRepository;
+import com.LiftOff.Job_Organizer.data.JobStatusRepository;
 import com.LiftOff.Job_Organizer.models.Job;
+import com.LiftOff.Job_Organizer.models.JobStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -18,7 +21,7 @@ public class JobsController {
     JobRepository jobRepository;
 
     @Autowired
-    JobRepository jobStatusRepository;
+    JobStatusRepository jobStatusRepository;
 
     @GetMapping("jobs/add")
     public String displayAddJobForm(Model model) {
@@ -29,15 +32,19 @@ public class JobsController {
     }
 
     @PostMapping("jobs/add")
-    public String processAddJobForm(@ModelAttribute @Valid Job newJob,
+    public String processAddJobForm(@ModelAttribute @Valid Job newJob, @RequestParam int jobStatusId,
                                        Errors errors, Model model) {
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
             return "jobs/add";
         }
+        Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
+        newJob.setJobStatus(optJobStatus.get());
         jobRepository.save(newJob);
         return "redirect:/jobs";
-    }
+        }
+
 
     @GetMapping("jobs/details/{Id}")
     public String displayJobDetails(@PathVariable Integer Id, Model model) {
@@ -50,10 +57,13 @@ public class JobsController {
             Job job = result.get();
             model.addAttribute("title", job.getTitle() + " Details");
             model.addAttribute("job", job);
+            model.addAttribute("status", job.getJobStatus());
         }
 
         return "jobs/details";
     }
+
+
 }
 
 
