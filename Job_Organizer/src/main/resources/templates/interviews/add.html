@@ -58,19 +58,6 @@
                     <label>Job Description</label>
                     <input th:field="${interview.interviewDetails.description}" class="form-control" id="description" rows="3" placeholder="Enter Important Interview Notes" required="required">
                 </div>
-
-                <div class="form-group">
-                    <label>Interview Status</label>
-                    <select class="form-control" id="statusDropDown">
-                        <option value="" disabled selected>Select Interview Status</option>
-                        <option th:value="Pending">Pending Response</option>
-                        <option th:value="Scheduled">Interview Scheduled</option>
-                        <option th:value="Complete_Response">Interview Complete</option>
-                        <option th:value="Hired">Hired</option>
-                        <option th:value="Rejected">Rejected</option>
-                    </select>
-                </div>
-
                 <div class="form-group">
                     <input type="submit" value="Add Interview" class="btn btn-success">
                 </div>

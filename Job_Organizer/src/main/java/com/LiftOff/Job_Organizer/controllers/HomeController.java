@@ -10,13 +10,4 @@ public class HomeController {
         return "jobs/list";
     }
 
-    @GetMapping("/interviews")
-    public String displayListOfInterviews(){
-        return "/interviews/list";
-    }
-
-    @GetMapping("/companies")
-    public String displayListOfCompanies(){
-        return "/companies/list";
-    }
 }

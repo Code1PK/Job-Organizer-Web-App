@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/interviews/")
+@RequestMapping("interviews")
 public class InterviewController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class InterviewController {
                model.addAttribute("interviews",  company.getInterviews());
            }
        }
-       return "/interviews/list";
+       return "interviews/list";
     }
 
     @GetMapping("add")
@@ -46,7 +46,7 @@ public class InterviewController {
         model.addAttribute("title", "Add Interview");
         model.addAttribute(new Interview());
         model.addAttribute("companies", companyRepository.findAll());
-        return "/interviews/add";
+        return "interviews/add";
     }
 
     @PostMapping("add")
@@ -91,7 +91,7 @@ public class InterviewController {
             model.addAttribute("interview", interview);
         }
 
-        return "/interviews/details";
+        return "interviews/details";
     }
 
 }

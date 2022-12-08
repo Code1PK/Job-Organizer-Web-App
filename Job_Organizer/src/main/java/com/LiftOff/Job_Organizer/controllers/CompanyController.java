@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/companies/")
+@RequestMapping("companies")
 public class CompanyController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class CompanyController {
     public String displayDeleteCompanyForm(Model model){
         model.addAttribute("title", "Delete Company");
         model.addAttribute("companies", companyRepository.findAll());
-        return "/companies/delete";
+        return "companies/delete";
     }
 
     @PostMapping("delete")
