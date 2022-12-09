@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("jobStatuses")
+@RequestMapping("jobs/jobStatuses")
 public class JobStatusController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class JobStatusController {
     @GetMapping("")
     public String displayJobStatus(Model model){
         model.addAttribute("title", "Job Statuses");
-        model.addAttribute("jobStatus", jobStatusRepository.findAll());
+        model.addAttribute("jobStatuses", jobStatusRepository.findAll());
         return "jobStatuses/list";
     }
 
@@ -41,7 +41,7 @@ public class JobStatusController {
         }
 
         jobStatusRepository.save(jobStatus);
-        return "redirect: jobs/jobStatuses/add";
+        return "jobs/add";
     }
 
     @GetMapping("view/{jobStatusId}")

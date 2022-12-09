@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("jobs")
 public class JobsController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class JobsController {
     @Autowired
     JobStatusRepository jobStatusRepository;
 
-    @GetMapping("jobs/add")
+    @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute(new Job());
         model.addAttribute("title", "Add Job Application");
@@ -31,7 +32,7 @@ public class JobsController {
         return "jobs/add";
     }
 
-    @PostMapping("jobs/add")
+    @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob, @RequestParam int jobStatusId,
                                        Errors errors, Model model) {
 
@@ -42,11 +43,11 @@ public class JobsController {
         Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
         newJob.setJobStatus(optJobStatus.get());
         jobRepository.save(newJob);
-        return "redirect:/jobs";
+        return "redirect:";
         }
 
 
-    @GetMapping("jobs/details/{Id}")
+    @GetMapping("details/{Id}")
     public String displayJobDetails(@PathVariable Integer Id, Model model) {
 
         Optional<Job> result = jobRepository.findById(Id);

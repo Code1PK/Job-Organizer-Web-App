@@ -16,7 +16,7 @@
             <h3>Add Job</h3>
 <form method="post">
         <div class="form-group">
-            <label for="title" >Title</label>
+            <label>Title</label>
             <input type="text" th:field="${job.title}" class="form-control" id="title" placeholder="enter job title" required="required">
             <p class="error" th:errors="${job.title}"></p>
         </div>

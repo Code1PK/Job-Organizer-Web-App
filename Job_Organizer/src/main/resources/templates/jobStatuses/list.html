@@ -10,27 +10,28 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
-<!--<p th:unless="${jobStatus} and ${jobStatus.size()}">No Status Listed</p>-->
-<!--<thead>-->
-<!--<tr>-->
-<!--    <th>Statuses</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tr th:each="status : ${jobStatus}">-->
-<!--    <td th:text="${jobStatus.name}">-->
-<!--    <a th:href="@{'/jobStatus/add'}">Add Job Status</a>-->
-<!--    </td>-->
-<!--</tr>-->
-
-
 <div class="container body-content">
     <h3>Job Statuses</h3>
-    <ul>
-        <li th:each="jobStatus : ${jobStatuses}">
-            <a  th:text="${jobStatus.name}"></a>
-        </li>
-    </ul>
-    <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobs/jobStatuses/add'}" role="button">Add New</a>
+<!--    <ul>-->
+<!--        <li th:each="jobStatus : ${jobStatuses}">-->
+<!--            <a  th:text="${jobStatus.name}"></a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--    <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobs/jobStatuses/add'}" role="button">Add New</a>-->
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tr th:each="jobStatus : ${jobStatuses}">
+            <td th:text="${jobStatus.id}"></td>
+            <td th:text="${jobStatus.name}"></td>
+            <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/jobStatuses/view/'+jobStatus.id}}" role="button">View</a></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
