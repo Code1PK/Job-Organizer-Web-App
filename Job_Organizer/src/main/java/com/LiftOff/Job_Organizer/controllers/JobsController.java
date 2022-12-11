@@ -64,6 +64,24 @@ public class JobsController {
         return "jobs/details";
     }
 
+    @GetMapping("delete")
+    public String displayDeleteJobForm(Model model) {
+        model.addAttribute("title", "Delete Job");
+        model.addAttribute("jobs", jobRepository.findAll());
+        return "jobs/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteJobForm(@RequestParam(required = false) int[] jobIds) {
+        if (jobIds != null) {
+            for (int id : jobIds) {
+                jobRepository.deleteById(id);
+            }
+        }
+        return "jobs/list";
+    }
+
+
 
 }
 

@@ -42,7 +42,7 @@
                 <span th:text="${job.jobUrl}"></span></li>
             </ul>
             <div class="card-footer text-muted">
-                <a  class="btn btn-outline-dark btn-sm" href="add" role="button">Edit</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/edit/'}}" role="button">Edit</a>
                 <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/delete/'}}" role="button">Delete</a>
             </div>
         </div>
