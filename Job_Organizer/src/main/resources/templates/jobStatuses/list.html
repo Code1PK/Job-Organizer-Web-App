@@ -12,23 +12,22 @@
 
 <div class="container body-content">
     <h3>Job Statuses</h3>
-<!--    <ul>-->
-<!--        <li th:each="jobStatus : ${jobStatuses}">-->
-<!--            <a  th:text="${jobStatus.name}"></a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--    <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobs/jobStatuses/add'}" role="button">Add New</a>-->
     <table class="table table-hover">
         <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tr th:each="jobStatus : ${jobStatuses}">
             <td th:text="${jobStatus.id}"></td>
             <td th:text="${jobStatus.name}"></td>
+
+            <td><form th:action="@{${'/jobs/jobStatuses/delete/'+jobStatus.id}}" class="col text-right" method="post">
+                <button class="btn btn-danger btn-sm"><i class="fas fa-edit"></i> Delete</button>
+            </form></td>
             <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/jobStatuses/view/'+jobStatus.id}}" role="button">View</a></td>
         </tr>
     </table>

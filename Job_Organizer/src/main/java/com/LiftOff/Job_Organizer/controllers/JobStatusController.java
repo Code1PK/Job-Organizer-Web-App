@@ -41,13 +41,12 @@ public class JobStatusController {
         }
 
         jobStatusRepository.save(jobStatus);
-        return "jobs/add";
+        return "redirect:";
     }
 
     @GetMapping("view/{jobStatusId}")
     public String displayViewJobStatus(Model model, @PathVariable int jobStatusId) {
         Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
-//        Optional optEmployer = null;
         if (optJobStatus.isPresent()) {
             JobStatus jobStatus = (JobStatus) optJobStatus.get();
             model.addAttribute("jobStatus", jobStatus);
@@ -55,5 +54,15 @@ public class JobStatusController {
         } else {
             return "redirect:";
         }
+    }
+
+
+    @PostMapping("delete/{Id}")
+    public String processDeleteJobStatusForm(@PathVariable int Id) {
+        Optional<JobStatus> optJobStatus = jobStatusRepository.findById(Id);
+        if (optJobStatus.isPresent()) {
+            jobStatusRepository.delete(optJobStatus.get());
+        }
+        return "redirect:";
     }
 }
