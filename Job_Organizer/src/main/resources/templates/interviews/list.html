@@ -10,17 +10,28 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
-<p th:unless="${interview} and ${interview.size()}">No Interviews!</p>
+<strong><p th:unless="${interviews} and ${interviews.size()}">No interviews listed!</p></strong>
 
-<table class="table table-striped"></table>
-    <thred>
+<div class="form-group">
+    <a href="interviews/add"/><input type="button" value="Add Interview" class="btn btn-dark"></a>
+</div>
+<div class="form-group">
+    <a href="/interviews/delete"/><input type="button" value="Delete Interview" class="btn btn-danger"></a>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
         <tr>
             <th>Interviews</th>
         </tr>
-    </thred>
-    <tr th:each="interview : ${interview}">
-        <td><a th:href="'/interview/detail?interviewId=' + ${interview.id}" th:text="${interview.companyName}"></a></td>
+    </thead>
+    <tr th:each="interview : ${interviews}">
+        <th>Job Title</th>
+        <td th:text="${interview.name}"></td>
+        <th>Company</th>
+        <td th:text="${interview.company}"></td>
     </tr>
-
+</table>
 </body>
 </html>
