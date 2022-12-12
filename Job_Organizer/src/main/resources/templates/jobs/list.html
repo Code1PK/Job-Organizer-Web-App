@@ -15,28 +15,21 @@
     <tr>
         <th scope="col">Company</th>
         <th scope="col">Title</th>
-        <th scope="col">Applied date</th>
+        <th scope="col">Job Status</th>
         <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
-    <tr class="table-light">
-        <th scope="row">Amazon</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td><a  class="btn btn-outline-dark btn-sm" href="jobs/details" role="button">View</a></td>
-    </tr>
-    <tr>
-        <th scope="row">Verizon</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td><a  class="btn btn-outline-dark btn-sm" href="jobs/details" role="button">View</a></td>
-    </tr>
-    <tr>
-        <th scope="row">Oracle</th>
-        <td>Column content</td>
-        <td>Column content</td>
-        <td><a  class="btn btn-outline-dark btn-sm" href="jobs/details" role="button">View</a></td>
+    <tr th:each="job : ${jobs}">
+        <td th:text="${job.company}"></td>
+        <td th:text="${job.title}"></td>
+<!--        <td>-->
+<!--            <li th:each="jobStatus : ${jobStatuses}">-->
+<!--                <a th:href="@{'/jobStatuses/view/' + ${jobStatus.getId()}}" th:text="${jobStatus.getName()}"></a>-->
+<!--            </li>-->
+<!--        </td>-->
+        <td th:href="@{'/jobStatuses/view/' + ${job.jobStatus}}" th:text="${job.jobStatus}"></td>
+        <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/details/'+job.id}}" role="button">View</a></td>
     </tr>
     </tbody>
 </table>

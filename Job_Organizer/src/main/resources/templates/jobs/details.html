@@ -10,6 +10,9 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
+
+<h3><span>Title: </span><span th:text="${job.title}"></span></h3>
+
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link" data-bs-toggle="tab" href="#jobApplication" aria-selected="true" role="tab">Job Application</a>
@@ -24,21 +27,23 @@
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade show active" id="jobApplication" role="tabpanel">
         <div class="card mb-3">
-            <h3 class="card-header">Title: </h3>
+            <h6 class="card-header">
+                <p><span> Company: </span><span th:text="${job.company}"></span></p>
+                <p><span>Location: </span><span th:text="${job.location}"></span></p>
+                <p><span>Job Status: </span><span th:text="${job.jobStatus.name}"></span></p>
+            </h6>
             <div class="card-body">
-                <h5 class="card-title text-muted">Company: </h5>
-                <h5 class="card-subtitle text-muted">Location: </h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text">Description: </p>
+                <span class="card-text">Description: </span>
+                <span th:text="${job.description}"></span>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Job URL: </li>
-                <li class="list-group-item">Applied date: </li>
+                <li class="list-group-item">
+                    <span>URL: </span>
+                <span th:text="${job.jobUrl}"></span></li>
             </ul>
             <div class="card-footer text-muted">
                 <a  class="btn btn-outline-dark btn-sm" href="add" role="button">Edit</a>
-                <a  class="btn btn-outline-dark btn-sm" href="jobs/delete" role="button">Delete</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/delete/'}}" role="button">Delete</a>
             </div>
         </div>
     </div>
@@ -59,14 +64,14 @@
             </div>
         </div>
     </div>
-    <div class="tab-pane fade show active" id="jobNotes" role="tabpanel">
-        <form>
-            <div class="form-group">
-                <label for="jobNotes">Add notes</label>
-                <textarea class="form-control"  rows="5" placeholder="enter notes"></textarea>
-            </div>
-            <button type="submit" class="btn btn-dark">Save</button>
-        </form>
+<div class="tab-pane fade show active" id="jobNotes" role="tabpanel">
+    <form>
+        <div class="form-group">
+            <label for="jobNotes">Add notes</label>
+            <textarea class="form-control"  rows="5" placeholder="enter notes"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Save</button>
+    </form>
     </div>
 </div>
 </body>
