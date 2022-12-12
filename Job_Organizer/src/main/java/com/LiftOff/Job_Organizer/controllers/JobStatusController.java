@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("jobStatuses")
+@RequestMapping("jobs/jobStatuses")
 public class JobStatusController {
 
     @Autowired
@@ -41,7 +41,7 @@ public class JobStatusController {
         }
 
         jobStatusRepository.save(jobStatus);
-        return "redirect: jobs/jobStatuses/add";
+        return "redirect:add";
     }
 
     @GetMapping("view/{jobStatusId}")
