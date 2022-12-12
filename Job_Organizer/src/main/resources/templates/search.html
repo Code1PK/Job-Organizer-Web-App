@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+
+    <div class="container">
+        <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+        <form th:action="@{/search/results}" method = "post">
+            <h2>Search by:</h2>
+
+            <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+            </p>
+
+            <p>
+                <label for="searchTerm">Keyword:</label>
+                <input type="text" name="searchTerm" id="searchTerm" />
+            </p>
+
+            <input type="submit" value="Search" />
+        </form>
+
+
+    </div>
+
+
+
+<body>
+
+</html>
