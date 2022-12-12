@@ -24,9 +24,8 @@
         <tr th:each="jobStatus : ${jobStatuses}">
             <td th:text="${jobStatus.id}"></td>
             <td th:text="${jobStatus.name}"></td>
-
-            <td><form th:action="@{${'/jobs/jobStatuses/delete/'+jobStatus.id}}" class="col text-right" method="post">
-                <button class="btn btn-danger btn-sm"><i class="fas fa-edit"></i> Delete</button>
+            <td><form th:action="@{${'/jobs/jobStatuses/'+jobStatus.id}}" class="col text-right" method="post">
+                <button class="btn btn-danger btn-sm"> Delete</button>
             </form></td>
             <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/jobStatuses/view/'+jobStatus.id}}" role="button">View</a></td>
         </tr>

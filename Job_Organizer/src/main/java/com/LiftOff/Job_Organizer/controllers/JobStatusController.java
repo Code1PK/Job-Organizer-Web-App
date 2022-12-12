@@ -57,7 +57,7 @@ public class JobStatusController {
     }
 
 
-    @PostMapping("delete/{Id}")
+    @PostMapping("/{Id}")
     public String processDeleteJobStatusForm(@PathVariable int Id) {
         Optional<JobStatus> optJobStatus = jobStatusRepository.findById(Id);
         if (optJobStatus.isPresent()) {

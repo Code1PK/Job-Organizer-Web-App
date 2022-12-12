@@ -99,15 +99,18 @@ public class JobsController {
     }
 
     @RequestMapping(path = "/edit/{Id}", method = RequestMethod.POST)
-    public String processEditJobForm(@ModelAttribute @Valid Job job, @RequestParam int jobStatusId, @RequestParam int Id,
+    public String processEditJobForm(@ModelAttribute @Valid Job job, @RequestParam int jobStatusId,
                                     Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Job Application");
             return "jobs/edit";
         }
-//        Job job = jobRepository.getReferenceById(Id);
-//        Optional<Job> result = jobRepository.findById(jobId);
+//        @RequestParam int jobId,
+//        Optional<Job> jobInDb = jobRepository.findById(jobId);
+//        if (result.isPresent()) {
+//            jobRepository.save(optJobStatus.get());
+//        }
 //        Job job = result.get();
         Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
         job.setJobStatus(optJobStatus.get());
