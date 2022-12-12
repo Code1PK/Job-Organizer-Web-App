@@ -10,7 +10,7 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
-<strong><p th:unless="${interview} and ${interview.size()}">No interviews listed!</p></strong>
+<strong><p th:unless="${interviews} and ${interviews.size()}">No interviews listed!</p></strong>
 
 <form method="post">
 

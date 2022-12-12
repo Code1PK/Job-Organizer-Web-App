@@ -31,12 +31,28 @@ public class Interview extends AbstractEntity {
     @NotBlank(message="Must not be blank!")
     private String jobURL;
 
+    @NotNull(message="Enter interviewer email")
+    @NotBlank(message="Must not be blank!")
+    private String interviewEmail;
 
-    public Interview(String name, Company company, String location, String jobURL){
+    @NotNull(message="Enter interviewer phone number")
+    @NotBlank(message="Must not be blank!")
+    private String interviewNumber;
+
+    private String interviewType;
+
+    private String meetingLink;
+
+
+    public Interview(String name, Company company, String location, String jobURL, String interviewEmail, String interviewNumber,String interviewType, String meetingLink){
         this.name = name;
         this.company = company;
         this.location = location;
         this.jobURL = jobURL;
+        this.interviewEmail = interviewEmail;
+        this.interviewNumber = interviewNumber;
+        this.interviewType = interviewType;
+        this.meetingLink = meetingLink;
     }
 
     public Interview(){}
@@ -79,6 +95,38 @@ public class Interview extends AbstractEntity {
 
     public void setInterviewDetails(InterviewDetails interviewDetails){
         this.interviewDetails = interviewDetails;
+    }
+
+    public String getInterviewEmail() {
+        return interviewEmail;
+    }
+
+    public void setInterviewEmail(String interviewEmail) {
+        this.interviewEmail = interviewEmail;
+    }
+
+    public String getInterviewNumber() {
+        return interviewNumber;
+    }
+
+    public void setInterviewNumber(String interviewNumber) {
+        this.interviewNumber = interviewNumber;
+    }
+
+    public String getInterviewType() {
+        return interviewType;
+    }
+
+    public void setInterviewType(String interviewType) {
+        this.interviewType = interviewType;
+    }
+
+    public String getMeetingLink() {
+        return meetingLink;
+    }
+
+    public void setMeetingLink(String meetingLink) {
+        this.meetingLink = meetingLink;
     }
 
     @Override

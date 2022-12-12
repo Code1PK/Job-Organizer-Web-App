@@ -53,7 +53,7 @@ public class InterviewController {
     public String processAddInterviewForm(@ModelAttribute @Valid Interview newInterview, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Interview");
-            return "/interviews/add";
+            return "interviews/add";
         }
         interviewRepository.save(newInterview);
         return "redirect:";
@@ -64,7 +64,7 @@ public class InterviewController {
     public String displayDeleteInterviewForm(Model model){
         model.addAttribute("title", "Delete Interview");
         model.addAttribute("interviews", interviewRepository.findAll());
-        return "/interviews/delete";
+        return "interviews/delete";
     }
 
     @PostMapping("delete")

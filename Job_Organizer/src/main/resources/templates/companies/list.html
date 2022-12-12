@@ -13,20 +13,19 @@
 <strong><p th:unless="${companies} and ${companies.size()}">No companies listed!</p></strong>
 
 <div class="form-group">
-    <a href="companies/add"/><input type="button" value="Add Company" class="btn btn-dark"></a>
+    <a href="/companies/add"/><input type="button" value="Add Company" class="btn btn-dark"></a>
 </div>
 <div class="form-group">
-    <a href="companies/delete"/><input type="button" value="Delete Company" class="btn btn-danger"></a>
+    <a href="/companies/delete"/><input type="button" value="Delete Company" class="btn btn-danger"></a>
 </div>
 
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Companies</th>
+        <th>Company Name</th>
     </tr>
     </thead>
     <tr th:each="company : ${companies}">
-        <th>Company Name</th>
         <td th:text="${company.name}"></td>
     </tr>
 </table>
