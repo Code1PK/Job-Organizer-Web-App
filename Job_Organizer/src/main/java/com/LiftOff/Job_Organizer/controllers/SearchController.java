@@ -1,5 +1,7 @@
 package com.LiftOff.Job_Organizer.controllers;
 
+import com.LiftOff.Job_Organizer.data.CompanyRepository;
+import com.LiftOff.Job_Organizer.data.InterviewRepository;
 import com.LiftOff.Job_Organizer.data.JobRepository;
 import com.LiftOff.Job_Organizer.models.Job;
 import com.LiftOff.Job_Organizer.models.JobData;
@@ -18,6 +20,13 @@ public class SearchController {
 
     @Autowired
     private JobRepository jobRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    @Autowired
+    private InterviewRepository interviewRepository;
+
 
     @RequestMapping("")
     public String search (Model model) {
