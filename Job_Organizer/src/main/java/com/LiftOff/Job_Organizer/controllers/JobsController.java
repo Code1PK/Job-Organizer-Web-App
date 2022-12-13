@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
+import static java.lang.Integer.parseInt;
+
 @Controller
 @RequestMapping("jobs")
 public class JobsController {
@@ -94,28 +96,34 @@ public class JobsController {
             model.addAttribute("title", "Edit Job Application");
             model.addAttribute("job", job);
             model.addAttribute("jobStatus", jobStatusRepository.findAll());
+            model.addAttribute("selected", job.getJobStatus().getId());
         }
         return "jobs/edit";
     }
 
     @RequestMapping(path = "/edit/{Id}", method = RequestMethod.POST)
     public String processEditJobForm(@ModelAttribute @Valid Job job, @RequestParam int jobStatusId,
-                                    Errors errors, Model model) {
+                                    Errors errors, Model model, @RequestParam String jobId) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Edit Job Application");
             return "jobs/edit";
         }
-//        @RequestParam int jobId,
-//        Optional<Job> jobInDb = jobRepository.findById(jobId);
-//        if (result.isPresent()) {
-//            jobRepository.save(optJobStatus.get());
-//        }
-//        Job job = result.get();
-        Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
-        job.setJobStatus(optJobStatus.get());
-        jobRepository.save(job);
-        return "redirect:/jobs/details/" + job.getId();
+        Optional<Job> jobInDb = jobRepository.findById(parseInt(jobId));
+        if (jobInDb.isPresent()) {
+            Job jobJob = jobInDb.get();
+            jobJob.setTitle(job.getTitle());
+            jobJob.setCompany(job.getCompany());
+            jobJob.setLocation(job.getLocation());
+            jobJob.setJobUrl(job.getJobUrl());
+            jobJob.setDescription(job.getDescription());
+            Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
+            jobJob.setJobStatus(optJobStatus.get());
+            jobRepository.save(jobJob);
+
+        }
+
+        return "redirect:/jobs/details/" + jobId;
     }
 
 
