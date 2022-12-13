@@ -8,13 +8,21 @@
 <center> <h1> Log into your account </h1> </center>
 <form>
     <div class="container">
-        <label>Username/Email : </label>
-        <input type="text" placeholder="Enter Username" name="username" required>
-        <label>Password : </label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-        <button type="submit" > <a href="/login"></a>Login</button>
-        <input type="checkbox" checked="checked"> Remember me
-        <button type="button" class="cancelbtn"> Cancel</button>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>:
+            <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+            <label for="password">Password</label>:
+            <input type="password" id="password" name="password" /> <br />
+            <button type="submit" class="Log in"><a href="loggingIn/welcomePage"></a>Login</button>
+            <button type="button" class="cancelbtn"> Cancel</button>
+        </form>
+<!--        <label>Username/Email : </label>-->
+<!--        <input type="text" placeholder="Enter Username" name="username" required>-->
+<!--        <label>Password : </label>-->
+<!--        <input type="password" placeholder="Enter Password" name="password" required>-->
+<!--        <button type="submit" action="loginbtn"><a href="loggingIn/welcomePage"></a> Login</button>-->
+<!--        <input type="checkbox" checked="checked"> Remember me-->
+<!--        <button type="button" class="cancelbtn"> Cancel</button>-->
         Forgot <a href="/forgetPassword"> password? </a>
         <div> New user create account <a href="/signUp">Sign up here</a> </div>
 

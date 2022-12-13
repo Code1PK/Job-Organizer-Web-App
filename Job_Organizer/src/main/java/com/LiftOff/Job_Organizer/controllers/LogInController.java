@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("login")
 public class LogInController {
 
-   // Login form
+    // Login form
    @GetMapping ("login")
    public String login() {
        return "loggingIn/welcomePage";
@@ -21,14 +20,15 @@ public class LogInController {
    @PostMapping("login")
    public String loggingIntoWelcomePage(@RequestParam String username,
                                         @RequestParam String password){
-       return "redirect:";
+       return "loggingIn/welcomePage";
 
    }
 
    //login form with error
+
     @GetMapping("error")
     public String loginError(Model model) {
-       model.addAttribute("loginError", true);
+       model.addAttribute("Error",true);
        return "loggingIn/error";
     }
 
