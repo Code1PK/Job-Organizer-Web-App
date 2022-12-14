@@ -13,12 +13,11 @@
 <main class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-8">
-            <h3>Add Job</h3>
+            <h3>Update Job</h3>
             <form method="post">
-                <div>
+                <div style="display: none;">
                     <label>Id</label>
-                    <input type="text" th:value="${job.id}" class="form-control" id="jobId" name="jobId" required="required">
-<!--                    <p class="error" th:errors="${job.id}"></p>-->
+                    <input type="text" th:value="${job.id}" class="form-control" id="jobId" name="jobId">
                 </div>
                 <div class="form-group">
                     <label>Title</label>
