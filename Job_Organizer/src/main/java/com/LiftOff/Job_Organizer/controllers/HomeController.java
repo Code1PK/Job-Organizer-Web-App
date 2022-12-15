@@ -23,7 +23,7 @@ public class HomeController {
     public String displayListOfJobs(Model model) {
         model.addAttribute("title", "All Jobs");
         model.addAttribute("jobs", jobRepository.findAll());
-        model.addAttribute("jobStatus", jobStatusRepository.findAll());
+        model.addAttribute("jobStatuses", jobStatusRepository.findAll());
         return "jobs/list";
     }
 

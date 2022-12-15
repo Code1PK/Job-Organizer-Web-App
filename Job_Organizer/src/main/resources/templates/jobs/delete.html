@@ -9,21 +9,19 @@
 </head>
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
-
+<h3>Delete Job Application</h3>
 <form method="post">
-
     <th:block th:each="job : ${jobs}">
         <div class="form-group">
             <label>
-                <span th:text="${job.title}"></span>
-                <input type="checkbox" name="jobId" th:value="${job.id}" class="form-control">
+                <p><span th:text="${job.title}"></span>
+                    <span>, </span>
+                    <span th:text="${job.company}"></span>
+                    <input type="checkbox" name="jobIds" th:value="${job.id}"></p>
             </label>
         </div>
     </th:block>
-
     <input type="submit" value="Delete" class="btn btn-danger">
-
 </form>
-
 </body>
 </html>
