@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+
+<strong><p th:unless="${interviews} and ${interviews.size()}">No interviews listed!</p></strong>
+
+<div class="form-group">
+    <a href="/interviews/add"/><input type="button" value="Add Interview" class="btn btn-dark"></a>
+</div>
+<div class="form-group">
+    <a href="/interviews/delete"/><input type="button" value="Delete Interview" class="btn btn-danger"></a>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Interview Date</th>
+            <th scope="col">Job Title</th>
+            <th scope="col">Company</th>
+        </tr>
+    </thead>
+    <tr th:each="interview : ${interviews}">
+        <td th:text="${interview.interviewDate}"></td>
+        <td th:text="${interview.title}"></td>
+        <td th:text="${interview.company}"></td>
+    </tr>
+</table>
+</body>
+</html>

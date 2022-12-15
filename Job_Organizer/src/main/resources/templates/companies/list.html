@@ -7,25 +7,27 @@
     <link rel="stylesheet" th:href="@{/css/jobs.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
 </head>
-<body class="container"> </body>
+<body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
-<body>
-<table class="table table-hover">
+
+<strong><p th:unless="${companies} and ${companies.size()}">No companies listed!</p></strong>
+
+<div class="form-group">
+    <a href="/companies/add"/><input type="button" value="Add Company" class="btn btn-dark"></a>
+</div>
+<div class="form-group">
+    <a href="/companies/delete"/><input type="button" value="Delete Company" class="btn btn-danger"></a>
+</div>
+
+<table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">Company</th>
-        <th scope="col">Title</th>
-        <th scope="col">Job Status</th>
+        <th>Company Name</th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="job : ${jobs}">
-        <td th:text="${job.company}"></td>
-        <td th:text="${job.title}"></td>
-        <td th:text="${job.jobStatus.name}"></td>
-        <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/details/'+job.id}}" role="button">View</a></td>
+    <tr th:each="company : ${companies}">
+        <td th:text="${company.name}"></td>
     </tr>
-    </tbody>
 </table>
 
 </body>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body class="container">
+
+<nav th:replace="fragments :: navLinks"></nav>
+
+<main class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h3>Add Interview</h3>
+            <form method="post" action="/interviews/add">
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input th:field="${interview.title}" class="form-control" id="title" placeholder="Enter Job Title" required="required">
+                    <p class="'error" th:errors="${interview.title}"></p>
+                </div>
+                <div class="form-group">
+                    <label>Company</label>
+                    <select th:field="${interview.company}">
+                        <option value="">Select Company</option>
+                        <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.name}"></option>
+                        <p class="error" th:errors="${interview.company}"></p>
+                    </select>
+                    <a  class="btn btn-outline-dark btn-sm" th:href="@{'/companies/add'}" role="button">Add New</a>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" th:field=${interview.location} class="form-control" id="location" placeholder="Enter the Location" required="required">
+                    <p class="error" th:errors="${interview.location}"></p>
+                </div>
+                <div class="form-group">
+                    <label>Interviewer Email</label>
+                    <input type="text" th:field=${interview.interviewEmail} class="form-control" id="interviewEmail" placeholder="Insert Interviewer Email" required="required">
+                    <p class="error" th:errors="${interview.interviewEmail}"></p>
+                </div>
+                <div class="form-group">
+                    <label>Interview Phone Number</label>
+                    <input type="text" th:field=${interview.interviewNumber} class="form-control" id="interviewNumber" placeholder="Insert Interviewer Number" required="required">
+                    <p class="error" th:errors="${interview.interviewNumber}"></p>
+                </div>
+                <div class="form-group">
+                    <label>Interview Type</label>
+                    <select name = "interviewType" id="interviewType">
+                        <option value="">Select Interview Type</option>
+                        <option value="In-Person">In-Person</option>
+                        <option value="Virtual">Virtual</option>
+                    </select>
+                    <div class="form-group" id="virtualInterview" style="display:none;">
+                        <label>Meeting Link</label>
+                        <input type="text" th:field=${interview.meetingLink} class="form-control" id="meetingLink" placeholder="Insert Meeting Link">
+                        <p class="error" th:errors="${interview.meetingLink}"></p>
+                    </div>
+                    <script>
+                        $('#interviewType').on('change', function(){
+                            let selection = $(this).val();
+                            switch(selection){
+                                case "Virtual":
+                                    $("#virtualInterview").show();
+                                    break;
+                                default:
+                                    $("#virtualInterview").hide();
+                                }
+                            });
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label>Job URL</label>
+                    <input type="text" th:field=${interview.jobURL} class="form-control" id="jobUrl" placeholder="Insert Job URL" required="required">
+                    <p class="error" th:errors="${interview.jobURL}"></p>
+                </div>
+                <div class="form-group">
+                    <label>Interview Date</label>
+                    <input type="date" th:field=${interview.interviewDate} class="form-control" id="interviewDate">
+                    <script>
+                        var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1;
+                        var yyyy = today.getFullYear();
+                            if (dd<10){
+                                dd="0" + dd}
+                            if (mm<10){
+                                mm="0" + mm}
+                        today = yyyy + "-" + mm + "-" + dd
+                        document.getElementById("interviewDate").setAttribute("min", today);
+                    </script>
+                </div>
+                <div class="form-group">
+                    <label>Job Description/Job Notes</label>
+                    <textarea type="textarea" th:field="${interview.interviewDetails.description}" class="form-control" id="description" rows="3" placeholder="enter Enter important interview notes" required="required"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add Interview" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+</html>

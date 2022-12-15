@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:fragment="head">
-    <meta charset="UTF-8">
-    <title th:text="${title}">Job Organizer</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" th:href="@{/css/jobs.css}">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+   <meta charset="UTF-8">
+   <title th:text="${title}">Job Organizer</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" th:href="@{/css/jobs.css}">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
-<p th:text="${errorMsg}"></p>
 <main class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-8">
-            <h3>Add Job</h3>
-<form method="post">
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" th:field="${job.title}" class="form-control" id="title" placeholder="enter job title" required="required">
-            <p class="error" th:errors="${job.title}"></p>
-        </div>
-    <div class="form-group">
-        <label for="company">Company</label>
-        <input type="text" th:field="${job.company}" class="form-control" id="company" placeholder="enter company name" required="required">
-        <p class="error" th:errors="${job.company}"></p>
-    </div>
-    <div class="form-group">
-        <label for="location">Location</label>
-        <input type="text" th:field="${job.location}" class="form-control" id="location" placeholder="enter location" required="required">
-        <p class="error" th:errors="${job.location}"></p>
-    </div>
-    <div class="form-group">
-        <label for="jobUrl">Job URL</label>
-        <input type="text" th:field="${job.jobUrl}" class="form-control" id="JobUrl" placeholder="enter job URL" required="required">
-        <p class="error" th:errors="${job.jobUrl}"></p>
-    </div>
-    <div class="form-group">
-        <label for="description">Job description</label>
-        <textarea type="textarea" th:field="${job.description}" class="form-control" id="description" rows="3" placeholder="enter job description" required="required"></textarea>
-        <p class="error" th:errors="${job.description}"></p>
-    </div>
-    <div class="form-group">
-        <label th:for="jobStatus">Job Status</label>
-        <select name="jobStatusId">
-            <option th:each="jobStatus : ${jobStatus}"
-                    th:text="${jobStatus.name}"
-                    th:value="${jobStatus.id}"></option>
-        </select>
-        <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobStatuses/add'}" role="button">Add New</a>
-    </div>
-    <button type="submit" class="btn btn-dark">Save</button>
-</form>
-        </div>
-    </div>
+   <div class="row justify-content-center">
+      <div class="col-8">
+         <h3>Add Job</h3>
+         <form method="post">
+            <div class="form-group">
+               <label>Title</label>
+               <input type="text" th:field="${job.title}" class="form-control" id="title" placeholder="enter job title" required="required">
+               <p class="error" th:errors="${job.title}"></p>
+            </div>
+            <div class="form-group">
+               <label>Company</label>
+               <select th:field="${job.company}">
+                  <option value="">Select Company</option>
+                  <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.name}"></option>
+                  <p class="error" th:errors="${job.company}"></p>
+               </select>
+               <a  class="btn btn-outline-dark btn-sm" th:href="@{'/companies/add'}" role="button">Add New</a>
+            </div>
+            <div class="form-group">
+               <label for="location">Location</label>
+               <input type="text" th:field="${job.location}" class="form-control" id="location" placeholder="enter location" required="required">
+               <p class="error" th:errors="${job.location}"></p>
+            </div>
+            <div class="form-group">
+               <label for="jobUrl">Job URL</label>
+               <input type="text" th:field="${job.jobUrl}" class="form-control" id="JobUrl" placeholder="enter job URL" required="required">
+               <p class="error" th:errors="${job.jobUrl}"></p>
+            </div>
+            <div class="form-group">
+               <label for="description">Job description</label>
+               <textarea type="textarea" th:field="${job.description}" class="form-control" id="description" rows="3" placeholder="enter job description" required="required"></textarea>
+               <p class="error" th:errors="${job.description}"></p>
+            </div>
+            <div class="form-group">
+               <label th:for="jobStatus">Job Status</label>
+               <select name="jobStatusId">
+                  <option value="">Select Job Status</option>
+                  <option th:each="jobStatus : ${jobStatus}"
+                          th:text="${jobStatus.name}"
+                          th:value="${jobStatus.id}"></option>
+               </select>
+               <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobStatuses/add'}" role="button">Add New</a>
+            </div>
+            <button type="submit" class="btn btn-dark">Save</button>
+         </form>
+      </div>
+   </div>
 </main>
 </body>
 </html>
