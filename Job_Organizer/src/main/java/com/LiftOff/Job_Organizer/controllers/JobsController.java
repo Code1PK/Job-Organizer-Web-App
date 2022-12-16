@@ -1,6 +1,7 @@
 package com.LiftOff.Job_Organizer.controllers;
 
 import com.LiftOff.Job_Organizer.data.CompanyRepository;
+import com.LiftOff.Job_Organizer.data.InterviewRepository;
 import com.LiftOff.Job_Organizer.data.JobRepository;
 import com.LiftOff.Job_Organizer.data.JobStatusRepository;
 import com.LiftOff.Job_Organizer.models.Job;
@@ -31,12 +32,16 @@ public class JobsController {
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private InterviewRepository interviewRepository;
+
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute(new Job());
         model.addAttribute("title", "Add Job Application");
         model.addAttribute("jobStatus", jobStatusRepository.findAll());
         model.addAttribute("companies", companyRepository.findAll());
+        model.addAttribute("interviews", interviewRepository.findAll());
         return "jobs/add";
     }
 
@@ -65,9 +70,10 @@ public class JobsController {
         } else {
             Job job = result.get();
             model.addAttribute("title", job.getTitle() + " Details");
-            model.addAttribute("jobs", job);
+            model.addAttribute("job", job);
             model.addAttribute("jobStatus", job.getJobStatus());
             model.addAttribute("companies", job.getCompany());
+            model.addAttribute("interviews", job.getInterview());
         }
 
         return "jobs/details";

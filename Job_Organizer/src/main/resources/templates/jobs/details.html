@@ -10,73 +10,80 @@
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
 
+
+<h3><span>Title: </span><span th:text="${job.title}"></span></h3>
+
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#jobApplication" aria-selected="true" role="tab">Job Application</a>
+        <a class="nav-link active" id="jobApplicatopn-tab" data-bs-toggle="tab" href="#jobApplication" aria-selected="true" role="tab">Job Application</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#interview" aria-selected="false" role="tab">Interview</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#jobNotes" aria-selected="false" role="tab">Notes</a>
+        <a class="nav-link" id="interview-tab" data-bs-toggle="tab" href="#interview" aria-selected="false" role="tab">Interview</a>
     </li>
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade show active" id="jobApplication" role="tabpanel">
         <div class="card mb-3">
-            <h3 class="card-header">Title: </h3>
+            <h6 class="card-header">
+                <p><span> Company: </span><span th:text="${job.company}"></span></p>
+                <p><span>Location: </span><span th:text="${job.location}"></span></p>
+                <p><span>Job Status: </span><span th:text="${job.jobStatus.name}"></span></p>
+            </h6>
             <div class="card-body">
-                <h5 class="card-title text-muted">Company: </h5>
-                <h5 class="card-subtitle text-muted">Location: </h5>
-            </div>
-            <div class="card-body">
-                <p class="card-text">Description: </p>
+                <span class="card-text">Description: </span>
+                <span th:text="${job.description}"></span>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Job URL: </li>
-                <li class="list-group-item">Applied date: </li>
+                <li class="list-group-item">
+                    <span>URL: </span>
+                    <span th:text="${job.jobUrl}" th:href="@{job.jobUrl}"></span></li>
             </ul>
             <div class="card-footer text-muted">
-                <a  class="btn btn-outline-dark btn-sm" href="add" role="button">Edit</a>
-                <a  class="btn btn-outline-dark btn-sm" href="jobs/delete" role="button">Delete</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/edit/'+job.id}}" role="button">Edit</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/delete'}}" role="button">Delete</a>
             </div>
         </div>
     </div>
     <div class="tab-pane fade" id="interview" role="tabpanel">
         <div class="card mb-3">
-            <?php
-            if ((${job.Url}==${interview.jobURL) && (${job.title}==${interview.title})){
-                echo '<table>
-                        <tr>
-                            <td>Date:</td>
-                            <td>Interview Type:</td>
-                            <td>Meeting Link:</td>
-                            <td>Email:</td>
-                            <td>Interviewer Phone Number</td>';
-                        $conn = mysql_connect("localhost:3306", "job_organizer", "Joborganizer")
-                        mysql_select_db("job_organizer", $conn);
-                        $sql = "SELECT * FROM interview WHERE joburl = '"+${interview.jobURL}+"' AND title = '"+${interview.title}+"'"
-                        $rs = mysql_query($sql, $conn) or die (mysql.error());
-                        $result = mysql_fetch_array($rs);
-                        while ($result = mysql_fetch_array($rs)){
-                            echo '<tr>
-                                    <td>'.$result['interview_date']'}</td>
-                                    <td>'.$result['interview_type']'}</td>
-                                    <td>'.$result['meeting_link']'}</td>
-                                    <td>'.$result['interview_email']'}</td>
-                                    <td>'.$result['interview_number']'}</td>
-                                </tr>;
-            echo '</table>';
-            } else {<p>No Interview Listed </p>};
-            ?>
-<!--            <h3 class="card-header">Date: </h3>-->
-<!--            <ul class="list-group list-group-flush">-->
-<!--                <li class="list-group-item">Interview type: </li>-->
-<!--                <li class="list-group-item">Notes: </li>-->
-<!--                <li class="list-group-item">Meeting link: </li>-->
-<!--                <li class="list-group-item">Email: </li>-->
-<!--                <li class="list-group-item">Phone: </li>-->
-<!--            </ul>-->
+<!--            <table>-->
+            <!--                    <tr>-->
+            <!--                        <td>Date:</td>-->
+            <!--                        <td>Interview Type:</td>-->
+            <!--                        <td>Meeting Link:</td>-->
+            <!--                        <td>Email:</td>-->
+            <!--                        <td>Interviewer Phone Number</td>-->
+            <!--                    </tr>-->
+            <!--                <?php-->
+            <!--                    if ((${job.Url}==${interview.jobURL) && (${job.title}==${interview.title})){-->
+            <!--                        echo '-->
+            <!--                        $conn = mysql_connect("localhost:3306", "job_organizer", "Joborganizer")-->
+            <!--                        mysql_select_db("job_organizer", $conn);-->
+            <!--                        $sql = "SELECT * FROM interview WHERE joburl = '"+${interview.jobURL}+"' AND title = '"+${interview.title}+"'"-->
+            <!--                        $rs = mysql_query($sql, $conn) or die (mysql.error());-->
+            <!--                        $result = mysql_fetch_array($rs);-->
+            <!--                        while ($result = mysql_fetch_array($rs)){-->
+            <!--                        ?>-->
+            <!--                            <tr>-->
+            <!--                                <td><?php echo '.$result['interview_date']'?></td>-->
+            <!--                                <td><?php echo '.$result['interview_type']'?></td>-->
+            <!--                                <td><?php echo '.$result['meeting_link']'?></td>-->
+            <!--                                <td><?php echo '.$result['interview_email']'?></td>-->
+            <!--                                <td><?php echo '.$result['interview_number']'?></td>-->
+            <!--                            </tr>';-->
+            <!--                        <?php } ?>-->
+            <!--                        <?php else { echo "No Interview Listed"} ?>-->
+            <!--                </table>-->
+            <!---->
+            <h6 class="card-header">
+                <p><span>Interview Date:</span><span th:text="${job.interview.interviewDate}"></span></p>
+                <p><span>Interview type:</span><span th:text="${job.interview.interviewType}"></span></p>
+                <p><span>Notes:</span><span th:text="${job.interview.interviewDetails.description}"></span></p>
+                <p><span>Meeting Link:</span><span th:text="${job.interview.meetingLink}"></span></p>
+                <p><span>Email:</span><span th:text="${job.interview.interviewEmail}"></span></p>
+                <p><span>Phone</span><span th:text="${job.interview.interviewPhone}"></span></p>
+            </h6>
+        </div>
             <div class="card-footer text-muted">
                 <a  class="btn btn-dark btn-sm" href="@{'/interviews/add'}" role="button">Add interview</a>
 <!--                <a  class="btn btn-outline-dark btn-sm" href=@{'/interviews/edit'}" role="button">Edit</a>-->
