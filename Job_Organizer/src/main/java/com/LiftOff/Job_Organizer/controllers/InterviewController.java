@@ -2,6 +2,7 @@ package com.LiftOff.Job_Organizer.controllers;
 
 import com.LiftOff.Job_Organizer.data.CompanyRepository;
 import com.LiftOff.Job_Organizer.data.InterviewRepository;
+import com.LiftOff.Job_Organizer.data.JobRepository;
 import com.LiftOff.Job_Organizer.models.Company;
 import com.LiftOff.Job_Organizer.models.Interview;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,24 @@ public class InterviewController {
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private JobRepository jobRepository;
+
     @GetMapping
-    public String displayInterviews(@RequestParam(required = false) Integer company_Id, Model model){
-       if (company_Id == null){
+    public String displayInterviews(@RequestParam(required = false) Integer companyId, Model model){
+       if (companyId == null){
            model.addAttribute("title", "All Interview");
            model.addAttribute("interviews", interviewRepository.findAll());
-       } else {
-           Optional<Company> result = companyRepository.findById(company_Id);
+           model.addAttribute("jobs", jobRepository.findAll());
+       } else{
+           Optional<Company> result = companyRepository.findById(companyId);
            if (result.isEmpty()){
-               model.addAttribute("title", "Invalid Company ID: " + company_Id);
+               model.addAttribute("title", "Invalid Company ID: " + companyId);
            } else {
                Company company = result.get();
                model.addAttribute("title", "Interviews by company" + company.getName());
                model.addAttribute("interviews",  company.getInterviews());
+               model.addAttribute("jobs", company.getJobs());
            }
        }
        return "interviews/list";
@@ -46,6 +52,7 @@ public class InterviewController {
         model.addAttribute("title", "Add Interview");
         model.addAttribute(new Interview());
         model.addAttribute("companies", companyRepository.findAll());
+        model.addAttribute("jobs", jobRepository.findAll());
         return "interviews/add";
     }
 
@@ -53,7 +60,7 @@ public class InterviewController {
     public String processAddInterviewForm(@ModelAttribute @Valid Interview newInterview, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Interview");
-            return "/interviews/add";
+            return "interviews/add";
         }
         interviewRepository.save(newInterview);
         return "redirect:";
@@ -64,7 +71,7 @@ public class InterviewController {
     public String displayDeleteInterviewForm(Model model){
         model.addAttribute("title", "Delete Interview");
         model.addAttribute("interviews", interviewRepository.findAll());
-        return "/interviews/delete";
+        return "interviews/delete";
     }
 
     @PostMapping("delete")
@@ -79,15 +86,15 @@ public class InterviewController {
     }
 
     @GetMapping("details")
-    public String displayInterviewDetails(@RequestParam Integer interview_Id, Model model){
+    public String displayInterviewDetails(@RequestParam Integer interviewId, Model model){
 
-        Optional<Interview> result = interviewRepository.findById(interview_Id);
+        Optional<Interview> result = interviewRepository.findById(interviewId);
 
         if (result.isEmpty()){
-            model.addAttribute("title", "Invalid Interview ID" + interview_Id);
+            model.addAttribute("title", "Invalid Interview ID" + interviewId);
         } else{
             Interview interview = result.get();
-            model.addAttribute("title", interview.getName() + "Details");
+            model.addAttribute("title", interview.getTitle() + "Details");
             model.addAttribute("interview", interview);
         }
 

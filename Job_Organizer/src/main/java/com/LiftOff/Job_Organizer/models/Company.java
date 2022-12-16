@@ -15,6 +15,9 @@ public class Company extends AbstractEntity {
     @OneToMany(mappedBy = "company")
     private final List<Interview> interviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "company")
+    private final List<Job> jobs = new ArrayList<>();
+
     public Company(@Size(min=3, message="Name must be at least 3 characters") String name){
         this.name=name;
     }
@@ -32,6 +35,8 @@ public class Company extends AbstractEntity {
     public List<Interview> getInterviews(){
         return interviews;
     }
+
+    public List<Job> getJobs() {return jobs;}
 
     @Override
     public String toString(){

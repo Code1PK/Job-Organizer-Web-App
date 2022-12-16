@@ -36,7 +36,7 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <span>URL: </span>
-                <span th:text="${job.jobUrl}" th:href="@{job.jobUrl}"></span></li>
+                    <span th:text="${job.jobUrl}" th:href="@{job.jobUrl}"></span></li>
             </ul>
             <div class="card-footer text-muted">
                 <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/edit/'+job.id}}" role="button">Edit</a>
@@ -46,29 +46,60 @@
     </div>
     <div class="tab-pane fade" id="interview" role="tabpanel">
         <div class="card mb-3">
-            <h3 class="card-header">Date: </h3>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Interview type: </li>
-                <li class="list-group-item">Notes: </li>
-                <li class="list-group-item">Meeting link: </li>
-                <li class="list-group-item">Email: </li>
-                <li class="list-group-item">Phone: </li>
-            </ul>
+<!--            <table>-->
+            <!--                    <tr>-->
+            <!--                        <td>Date:</td>-->
+            <!--                        <td>Interview Type:</td>-->
+            <!--                        <td>Meeting Link:</td>-->
+            <!--                        <td>Email:</td>-->
+            <!--                        <td>Interviewer Phone Number</td>-->
+            <!--                    </tr>-->
+            <!--                <?php-->
+            <!--                    if ((${job.Url}==${interview.jobURL) && (${job.title}==${interview.title})){-->
+            <!--                        echo '-->
+            <!--                        $conn = mysql_connect("localhost:3306", "job_organizer", "Joborganizer")-->
+            <!--                        mysql_select_db("job_organizer", $conn);-->
+            <!--                        $sql = "SELECT * FROM interview WHERE joburl = '"+${interview.jobURL}+"' AND title = '"+${interview.title}+"'"-->
+            <!--                        $rs = mysql_query($sql, $conn) or die (mysql.error());-->
+            <!--                        $result = mysql_fetch_array($rs);-->
+            <!--                        while ($result = mysql_fetch_array($rs)){-->
+            <!--                        ?>-->
+            <!--                            <tr>-->
+            <!--                                <td><?php echo '.$result['interview_date']'?></td>-->
+            <!--                                <td><?php echo '.$result['interview_type']'?></td>-->
+            <!--                                <td><?php echo '.$result['meeting_link']'?></td>-->
+            <!--                                <td><?php echo '.$result['interview_email']'?></td>-->
+            <!--                                <td><?php echo '.$result['interview_number']'?></td>-->
+            <!--                            </tr>';-->
+            <!--                        <?php } ?>-->
+            <!--                        <?php else { echo "No Interview Listed"} ?>-->
+            <!--                </table>-->
+            <!---->
+            <h6 class="card-header">
+                <p><span>Interview Date:</span><span th:text="${job.interview.interviewDate}"></span></p>
+                <p><span>Interview type:</span><span th:text="${job.interview.interviewType}"></span></p>
+                <p><span>Notes:</span><span th:text="${job.interview.interviewDetails.description}"></span></p>
+                <p><span>Meeting Link:</span><span th:text="${job.interview.meetingLink}"></span></p>
+                <p><span>Email:</span><span th:text="${job.interview.interviewEmail}"></span></p>
+                <p><span>Phone</span><span th:text="${job.interview.interviewPhone}"></span></p>
+            </h6>
+        </div>
             <div class="card-footer text-muted">
-                <a  class="btn btn-dark btn-sm" href="add" role="button">Add interview</a>
-                <a  class="btn btn-outline-dark btn-sm" href="add" role="button">Edit</a>
-                <a  class="btn btn-outline-dark btn-sm" href="jobs/delete" role="button">Delete</a>
+                <a  class="btn btn-dark btn-sm" href="@{'/interviews/add'}" role="button">Add interview</a>
+<!--                <a  class="btn btn-outline-dark btn-sm" href=@{'/interviews/edit'}" role="button">Edit</a>-->
+                <a  class="btn btn-outline-dark btn-sm" href="@{'/interviews/delete'}" role="button">Delete</a>
             </div>
         </div>
     </div>
-<!--<div class="tab-pane fade show active" id="jobNotes" role="tabpanel">-->
-<!--    <form>-->
-<!--        <div class="form-group">-->
-<!--            <label for="jobNotes">Add notes</label>-->
-<!--            <textarea class="form-control"  rows="5" placeholder="enter notes"></textarea>-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-dark">Save</button>-->
-<!--    </form>-->
+
+<!--    <div class="tab-pane fade show active" id="jobNotes" role="tabpanel">-->
+<!--        <form>-->
+<!--            <div class="form-group">-->
+<!--                <label for="jobNotes">Add notes</label>-->
+<!--                <textarea class="form-control"  rows="5" placeholder="enter notes"></textarea>-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-dark">Save</button>-->
+<!--        </form>-->
 <!--    </div>-->
 </div>
 </body>

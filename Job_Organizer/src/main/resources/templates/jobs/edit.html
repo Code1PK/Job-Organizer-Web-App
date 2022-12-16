@@ -13,8 +13,12 @@
 <main class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-8">
-            <h3>Add Job</h3>
+            <h3>Update Job</h3>
             <form method="post">
+                <div style="display: none;">
+                    <label>Id</label>
+                    <input type="text" th:value="${job.id}" class="form-control" id="jobId" name="jobId">
+                </div>
                 <div class="form-group">
                     <label>Title</label>
                     <input type="text" th:field="${job.title}" class="form-control" id="title" placeholder="enter job title" required="required">
@@ -45,7 +49,8 @@
                     <select name="jobStatusId">
                         <option th:each="jobStatus : ${jobStatus}"
                                 th:text="${jobStatus.name}"
-                                th:value="${jobStatus.id}"></option>
+                                th:value="${jobStatus.id}"
+                                th:selected="${selected}==${jobStatus.id}"></option>
                     </select>
                     <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobStatuses/add'}" role="button">Add New</a>
                 </div>
