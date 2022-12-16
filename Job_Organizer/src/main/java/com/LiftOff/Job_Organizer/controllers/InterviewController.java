@@ -5,6 +5,8 @@ import com.LiftOff.Job_Organizer.data.InterviewRepository;
 import com.LiftOff.Job_Organizer.data.JobRepository;
 import com.LiftOff.Job_Organizer.models.Company;
 import com.LiftOff.Job_Organizer.models.Interview;
+import com.LiftOff.Job_Organizer.models.Job;
+import com.LiftOff.Job_Organizer.models.JobStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,16 +54,19 @@ public class InterviewController {
         model.addAttribute("title", "Add Interview");
         model.addAttribute(new Interview());
         model.addAttribute("companies", companyRepository.findAll());
-        model.addAttribute("jobs", jobRepository.findAll());
+//        model.addAttribute("jobs", jobRepository.findAll());
+        model.addAttribute("job", jobRepository.findAll());
         return "interviews/add";
     }
 
     @PostMapping("add")
-    public String processAddInterviewForm(@ModelAttribute @Valid Interview newInterview, Errors errors, Model model){
+    public String processAddInterviewForm(@ModelAttribute @Valid Interview newInterview, @RequestParam int jobId, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add Interview");
             return "interviews/add";
         }
+        Optional<Job> optJob = jobRepository.findById(jobId);
+        newInterview.setJob(optJob.get());
         interviewRepository.save(newInterview);
         return "redirect:";
     }

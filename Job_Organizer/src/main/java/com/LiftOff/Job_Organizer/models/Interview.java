@@ -51,8 +51,11 @@ public class Interview extends AbstractEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate interviewDate;
 
-    @OneToMany(mappedBy = "interview")
-    private final List<Job> jobs = new ArrayList<>();
+//    @OneToMany(mappedBy = "interview")
+//    private final List<Job> jobs = new ArrayList<>();
+
+    @ManyToOne
+    private Job job;
 
 
     public Interview(String title, Company company, String location, String jobURL, String interviewEmail, String interviewNumber,String interviewType, String meetingLink, LocalDate interviewDate){
@@ -149,7 +152,16 @@ public class Interview extends AbstractEntity {
         this.interviewDate = interviewDate;
     }
 
-    public List<Job> getJobs() {return jobs;}
+//    public List<Job> getJobs() {return jobs;}
+
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
 
     @Override
     public String toString() {

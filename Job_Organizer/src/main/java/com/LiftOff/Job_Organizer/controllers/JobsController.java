@@ -72,8 +72,11 @@ public class JobsController {
             model.addAttribute("title", job.getTitle() + " Details");
             model.addAttribute("job", job);
             model.addAttribute("jobStatus", job.getJobStatus());
-            model.addAttribute("companies", job.getCompany());
-            model.addAttribute("interviews", job.getInterview());
+//            model.addAttribute("companies", job.getCompany());
+//            model.addAttribute("interviews", job.getInterview());
+            model.addAttribute("company", job.getCompany());
+//            model.addAttribute("interviews", job.getInterviews());
+            model.addAttribute("interviews", interviewRepository.findAll());
         }
 
         return "jobs/details";

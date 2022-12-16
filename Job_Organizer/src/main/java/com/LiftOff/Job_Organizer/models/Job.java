@@ -1,6 +1,7 @@
 package com.LiftOff.Job_Organizer.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 public class Job extends AbstractEntity{
@@ -38,12 +40,16 @@ public class Job extends AbstractEntity{
     @ManyToOne
     private JobStatus jobStatus;
 
-    @ManyToOne
-    private Interview interview;
+//    @ManyToOne
+//    private Interview interview;
+
+    @OneToMany
+    @JoinColumn(name="job_id")
+    private final List<Interview> interviews = new ArrayList<>();
 
     public Job() {}
 
-    public Job(String title, Company company, String location, String jobUrl, String description, JobStatus jobStatus, Interview interview) {
+    public Job(String title, Company company, String location, String jobUrl, String description, JobStatus jobStatus) {
         super();
         this.title = title;
         this.company = company;
@@ -51,7 +57,7 @@ public class Job extends AbstractEntity{
         this.jobUrl = jobUrl;
         this.description = description;
         this.jobStatus = jobStatus;
-        this.interview = interview;
+//        this.interview = interview;
     }
 
     public String getTitle() {
@@ -102,12 +108,17 @@ public class Job extends AbstractEntity{
         this.jobStatus = jobStatus;
     }
 
-    public Interview getInterview() {
-        return interview;
-    }
+//    public Interview getInterview() {
+//        return interview;
+//    }
+//
+//    public void setInterview(Interview interview) {
+//        this.interview = interview;
+//    }
 
-    public void setInterview(Interview interview) {
-        this.interview = interview;
+
+    public List<Interview> getInterviews() {
+        return interviews;
     }
 
     @Override

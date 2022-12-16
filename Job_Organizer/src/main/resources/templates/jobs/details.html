@@ -25,7 +25,7 @@
     <div class="tab-pane fade show active" id="jobApplication" role="tabpanel">
         <div class="card mb-3">
             <h6 class="card-header">
-                <p><span> Company: </span><span th:text="${job.company}"></span></p>
+                <p><span>Company: </span><span th:text="${job.company}"></span></p>
                 <p><span>Location: </span><span th:text="${job.location}"></span></p>
                 <p><span>Job Status: </span><span th:text="${job.jobStatus.name}"></span></p>
             </h6>
@@ -75,13 +75,22 @@
             <!--                        <?php else { echo "No Interview Listed"} ?>-->
             <!--                </table>-->
             <!---->
-            <h6 class="card-header">
-                <p><span>Interview Date:</span><span th:text="${job.interview.interviewDate}"></span></p>
-                <p><span>Interview type:</span><span th:text="${job.interview.interviewType}"></span></p>
-                <p><span>Notes:</span><span th:text="${job.interview.interviewDetails.description}"></span></p>
-                <p><span>Meeting Link:</span><span th:text="${job.interview.meetingLink}"></span></p>
-                <p><span>Email:</span><span th:text="${job.interview.interviewEmail}"></span></p>
-                <p><span>Phone</span><span th:text="${job.interview.interviewPhone}"></span></p>
+<!--            <h6 class="card-header">-->
+<!--                <p><span>Interview Date:</span><span th:text="${job.interview.interviewDate}"></span></p>-->
+<!--                <p><span>Interview type:</span><span th:text="${job.interview.interviewType}"></span></p>-->
+<!--                <p><span>Notes:</span><span th:text="${job.interview.interviewDetails.description}"></span></p>-->
+<!--                <p><span>Meeting Link:</span><span th:text="${job.interview.meetingLink}"></span></p>-->
+<!--                <p><span>Email:</span><span th:text="${job.interview.interviewEmail}"></span></p>-->
+<!--                <p><span>Phone</span><span th:text="${job.interview.interviewPhone}"></span></p>-->
+<!--            </h6>-->
+<!--        </div>-->
+            <h6 class="card-header" th:each="interview : ${interviews}">
+                <p><span>Interview Date:</span><span th:text="${interview.interviewDate}"></span></p>
+                <p><span>Interview type:</span><span th:text="${interview.interviewType}"></span></p>
+                <p><span>Notes:</span><span th:text="${interview.interviewDetails.description}"></span></p>
+                <p><span>Meeting Link:</span><span th:text="${interview.meetingLink}"></span></p>
+                <p><span>Email:</span><span th:text="${interview.interviewEmail}"></span></p>
+<!--                <p><span>Phone</span><span th:text="${interview.interviewPhone}"></span></p>-->
             </h6>
         </div>
             <div class="card-footer text-muted">
