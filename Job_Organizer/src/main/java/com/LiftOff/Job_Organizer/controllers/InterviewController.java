@@ -6,7 +6,6 @@ import com.LiftOff.Job_Organizer.data.JobRepository;
 import com.LiftOff.Job_Organizer.models.Company;
 import com.LiftOff.Job_Organizer.models.Interview;
 import com.LiftOff.Job_Organizer.models.Job;
-import com.LiftOff.Job_Organizer.models.JobStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +53,6 @@ public class InterviewController {
         model.addAttribute("title", "Add Interview");
         model.addAttribute(new Interview());
         model.addAttribute("companies", companyRepository.findAll());
-//        model.addAttribute("jobs", jobRepository.findAll());
         model.addAttribute("job", jobRepository.findAll());
         return "interviews/add";
     }
@@ -99,7 +97,7 @@ public class InterviewController {
             model.addAttribute("title", "Invalid Interview ID" + interviewId);
         } else{
             Interview interview = result.get();
-            model.addAttribute("title", interview.getTitle() + "Details");
+            model.addAttribute("title", interview.getJob().getTitle() + "Details");
             model.addAttribute("interview", interview);
         }
 

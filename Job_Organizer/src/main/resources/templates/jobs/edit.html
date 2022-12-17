@@ -25,9 +25,14 @@
                     <p class="error" th:errors="${job.title}"></p>
                 </div>
                 <div class="form-group">
-                    <label for="company">Company</label>
-                    <input type="text" th:field="${job.company}" class="form-control" id="company" placeholder="enter company name" required="required">
-                    <p class="error" th:errors="${job.company}"></p>
+                    <label>Company</label>
+                    <select name="companyId">
+                        <option th:each="company : ${company}"
+                                th:text="${company.name}"
+                                th:value="${company.id}"
+                                th:selectedComp="${selectedComp}==${company.id}"></option>
+                    </select>
+                    <a  class="btn btn-outline-dark btn-sm" th:href="@{'/companies/add'}" role="button">Add New</a>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>

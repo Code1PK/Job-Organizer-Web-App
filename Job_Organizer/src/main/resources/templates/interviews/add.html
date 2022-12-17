@@ -18,11 +18,6 @@
             <h3>Add Interview</h3>
             <form method="post" action="/interviews/add">
                 <div class="form-group">
-                    <label>Job Title</label>
-                    <input th:field="${interview.title}" class="form-control" id="title" placeholder="Enter Job Title" required="required">
-                    <p class="'error" th:errors="${interview.title}"></p>
-                </div>
-                <div class="form-group">
                     <label th:for="jobStatus">Job</label>
                     <select name="jobId">
                         <option value="">Select Job</option>
@@ -30,7 +25,6 @@
                                 th:text="${job.title}"
                                 th:value="${job.id}"></option>
                     </select>
-<!--                    <a  class="btn btn-outline-dark btn-sm" th:href="@{'jobStatuses/add'}" role="button">Add New</a>-->
                 </div>
                 <div class="form-group">
                     <label>Company</label>
@@ -40,21 +34,6 @@
                         <p class="error" th:errors="${interview.company}"></p>
                     </select>
                     <a  class="btn btn-outline-dark btn-sm" th:href="@{'/companies/add'}" role="button">Add New</a>
-                </div>
-                <div class="form-group">
-                    <label>Location</label>
-                    <input type="text" th:field=${interview.location} class="form-control" id="location" placeholder="Enter the Location" required="required">
-                    <p class="error" th:errors="${interview.location}"></p>
-                </div>
-                <div class="form-group">
-                    <label>Interviewer Email</label>
-                    <input type="text" th:field=${interview.interviewEmail} class="form-control" id="interviewEmail" placeholder="Insert Interviewer Email" required="required">
-                    <p class="error" th:errors="${interview.interviewEmail}"></p>
-                </div>
-                <div class="form-group">
-                    <label>Interview Phone Number</label>
-                    <input type="text" th:field=${interview.interviewNumber} class="form-control" id="interviewNumber" placeholder="Insert Interviewer Number" required="required">
-                    <p class="error" th:errors="${interview.interviewNumber}"></p>
                 </div>
                 <div class="form-group">
                     <label>Interview Type</label>
@@ -82,9 +61,14 @@
                     </script>
                 </div>
                 <div class="form-group">
-                    <label>Job URL</label>
-                    <input type="text" th:field=${interview.jobURL} class="form-control" id="jobUrl" placeholder="Insert Job URL" required="required">
-                    <p class="error" th:errors="${interview.jobURL}"></p>
+                    <label>Interviewer Email</label>
+                    <input type="text" th:field=${interview.interviewEmail} class="form-control" id="interviewEmail" placeholder="Insert Interviewer Email" required="required">
+                    <p class="error" th:errors="${interview.interviewEmail}"></p>
+                </div>
+                <div class="form-group">
+                    <label>Interview Phone Number</label>
+                    <input type="text" th:field=${interview.interviewNumber} class="form-control" id="interviewNumber" placeholder="Insert Interviewer Number" required="required">
+                    <p class="error" th:errors="${interview.interviewNumber}"></p>
                 </div>
                 <div class="form-group">
                     <label>Interview Date</label>
@@ -103,8 +87,8 @@
                     </script>
                 </div>
                 <div class="form-group">
-                    <label>Job Description/Job Notes</label>
-                    <textarea type="textarea" th:field="${interview.interviewDetails.description}" class="form-control" id="description" rows="3" placeholder="enter Enter important interview notes" required="required"></textarea>
+                    <label>Interview Notes</label>
+                    <textarea type="textarea" th:field="${interview.interviewDetails.description}" class="form-control" id="description" rows="3" placeholder="Enter important interview notes" required="required"></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Add Interview" class="btn btn-success">

@@ -20,7 +20,6 @@ public class Job extends AbstractEntity{
     private String title;
 
     @ManyToOne
-    @NotNull(message = "Company is required!")
     private Company company;
 
     @NotNull(message="Location required!")
@@ -40,9 +39,6 @@ public class Job extends AbstractEntity{
     @ManyToOne
     private JobStatus jobStatus;
 
-//    @ManyToOne
-//    private Interview interview;
-
     @OneToMany
     @JoinColumn(name="job_id")
     private final List<Interview> interviews = new ArrayList<>();
@@ -57,7 +53,6 @@ public class Job extends AbstractEntity{
         this.jobUrl = jobUrl;
         this.description = description;
         this.jobStatus = jobStatus;
-//        this.interview = interview;
     }
 
     public String getTitle() {
@@ -107,15 +102,6 @@ public class Job extends AbstractEntity{
     public void setJobStatus(JobStatus jobStatus) {
         this.jobStatus = jobStatus;
     }
-
-//    public Interview getInterview() {
-//        return interview;
-//    }
-//
-//    public void setInterview(Interview interview) {
-//        this.interview = interview;
-//    }
-
 
     public List<Interview> getInterviews() {
         return interviews;

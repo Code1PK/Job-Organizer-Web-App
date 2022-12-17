@@ -9,15 +9,17 @@
 </head>
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
-
+<h3>Delete Interview</h3>
 <strong><p th:unless="${interviews} and ${interviews.size()}">No interviews listed!</p></strong>
-
 <form method="post">
-
     <th:block th:each="interview : ${interviews}">
         <div class="form-group">
             <label>
-                <span th:text="${interview.title}"></span>
+                <span th:text="${interview.job.title}"></span>
+                <span>, </span>
+                <span th:text="${interview.job.company}"></span>
+                <span>, </span>
+                <span th:text="${interview.interviewDate}"></span>
                 <input type="checkbox" name="interviewIds" th:value="${interview.id}">
             </label>
         </div>

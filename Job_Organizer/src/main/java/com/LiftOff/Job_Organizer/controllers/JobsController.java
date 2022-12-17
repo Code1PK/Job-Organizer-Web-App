@@ -108,6 +108,8 @@ public class JobsController {
             Job job = result.get();
             model.addAttribute("title", "Edit Job Application");
             model.addAttribute("job", job);
+            model.addAttribute("company", companyRepository.findAll());
+            model.addAttribute("selectedComp", job.getCompany().getId());
             model.addAttribute("jobStatus", jobStatusRepository.findAll());
             model.addAttribute("selected", job.getJobStatus().getId());
         }
@@ -126,9 +128,8 @@ public class JobsController {
         if (jobInDb.isPresent()) {
             Job jobJob = jobInDb.get();
             jobJob.setTitle(job.getTitle());
-            jobJob.setCompany(job.getCompany());
-//            Optional<Company> optCompany = companyRepository.findById(companyId);
-//            jobJob.setCompany(optCompany.get());
+            Optional<Company> optCompany = companyRepository.findById(companyId);
+            jobJob.setCompany(optCompany.get());
             jobJob.setLocation(job.getLocation());
             jobJob.setJobUrl(job.getJobUrl());
             jobJob.setDescription(job.getDescription());
