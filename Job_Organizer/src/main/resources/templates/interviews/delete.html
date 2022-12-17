@@ -17,7 +17,7 @@
     <th:block th:each="interview : ${interviews}">
         <div class="form-group">
             <label>
-                <span th:text="${interview.name}"></span>
+                <span th:text="${interview.title}"></span>
                 <input type="checkbox" name="interviewIds" th:value="${interview.id}">
             </label>
         </div>

@@ -4,6 +4,7 @@ import com.LiftOff.Job_Organizer.data.CompanyRepository;
 import com.LiftOff.Job_Organizer.data.InterviewRepository;
 import com.LiftOff.Job_Organizer.data.JobRepository;
 import com.LiftOff.Job_Organizer.data.JobStatusRepository;
+import com.LiftOff.Job_Organizer.models.Company;
 import com.LiftOff.Job_Organizer.models.Job;
 import com.LiftOff.Job_Organizer.models.JobStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,11 +73,8 @@ public class JobsController {
             model.addAttribute("title", job.getTitle() + " Details");
             model.addAttribute("job", job);
             model.addAttribute("jobStatus", job.getJobStatus());
-//            model.addAttribute("companies", job.getCompany());
-//            model.addAttribute("interviews", job.getInterview());
             model.addAttribute("company", job.getCompany());
-//            model.addAttribute("interviews", job.getInterviews());
-            model.addAttribute("interviews", interviewRepository.findAll());
+            model.addAttribute("interviews", job.getInterviews());
         }
 
         return "jobs/details";
@@ -109,9 +107,8 @@ public class JobsController {
         } else {
             Job job = result.get();
             model.addAttribute("title", "Edit Job Application");
-            model.addAttribute("jobs", job);
+            model.addAttribute("job", job);
             model.addAttribute("jobStatus", jobStatusRepository.findAll());
-            model.addAttribute("companies", companyRepository.findAll());
             model.addAttribute("selected", job.getJobStatus().getId());
         }
         return "jobs/edit";
@@ -130,13 +127,17 @@ public class JobsController {
             Job jobJob = jobInDb.get();
             jobJob.setTitle(job.getTitle());
             jobJob.setCompany(job.getCompany());
+//            Optional<Company> optCompany = companyRepository.findById(companyId);
+//            jobJob.setCompany(optCompany.get());
             jobJob.setLocation(job.getLocation());
             jobJob.setJobUrl(job.getJobUrl());
             jobJob.setDescription(job.getDescription());
             Optional<JobStatus> optJobStatus = jobStatusRepository.findById(jobStatusId);
             jobJob.setJobStatus(optJobStatus.get());
             jobRepository.save(jobJob);
+
         }
+
         return "redirect:/jobs/details/" + jobId;
     }
 

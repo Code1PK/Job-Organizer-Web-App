@@ -45,71 +45,23 @@
         </div>
     </div>
     <div class="tab-pane fade" id="interview" role="tabpanel">
-        <div class="card mb-3">
-<!--            <table>-->
-            <!--                    <tr>-->
-            <!--                        <td>Date:</td>-->
-            <!--                        <td>Interview Type:</td>-->
-            <!--                        <td>Meeting Link:</td>-->
-            <!--                        <td>Email:</td>-->
-            <!--                        <td>Interviewer Phone Number</td>-->
-            <!--                    </tr>-->
-            <!--                <?php-->
-            <!--                    if ((${job.Url}==${interview.jobURL) && (${job.title}==${interview.title})){-->
-            <!--                        echo '-->
-            <!--                        $conn = mysql_connect("localhost:3306", "job_organizer", "Joborganizer")-->
-            <!--                        mysql_select_db("job_organizer", $conn);-->
-            <!--                        $sql = "SELECT * FROM interview WHERE joburl = '"+${interview.jobURL}+"' AND title = '"+${interview.title}+"'"-->
-            <!--                        $rs = mysql_query($sql, $conn) or die (mysql.error());-->
-            <!--                        $result = mysql_fetch_array($rs);-->
-            <!--                        while ($result = mysql_fetch_array($rs)){-->
-            <!--                        ?>-->
-            <!--                            <tr>-->
-            <!--                                <td><?php echo '.$result['interview_date']'?></td>-->
-            <!--                                <td><?php echo '.$result['interview_type']'?></td>-->
-            <!--                                <td><?php echo '.$result['meeting_link']'?></td>-->
-            <!--                                <td><?php echo '.$result['interview_email']'?></td>-->
-            <!--                                <td><?php echo '.$result['interview_number']'?></td>-->
-            <!--                            </tr>';-->
-            <!--                        <?php } ?>-->
-            <!--                        <?php else { echo "No Interview Listed"} ?>-->
-            <!--                </table>-->
-            <!---->
-<!--            <h6 class="card-header">-->
-<!--                <p><span>Interview Date:</span><span th:text="${job.interview.interviewDate}"></span></p>-->
-<!--                <p><span>Interview type:</span><span th:text="${job.interview.interviewType}"></span></p>-->
-<!--                <p><span>Notes:</span><span th:text="${job.interview.interviewDetails.description}"></span></p>-->
-<!--                <p><span>Meeting Link:</span><span th:text="${job.interview.meetingLink}"></span></p>-->
-<!--                <p><span>Email:</span><span th:text="${job.interview.interviewEmail}"></span></p>-->
-<!--                <p><span>Phone</span><span th:text="${job.interview.interviewPhone}"></span></p>-->
-<!--            </h6>-->
-<!--        </div>-->
-            <h6 class="card-header" th:each="interview : ${interviews}">
-                <p><span>Interview Date:</span><span th:text="${interview.interviewDate}"></span></p>
-                <p><span>Interview type:</span><span th:text="${interview.interviewType}"></span></p>
-                <p><span>Notes:</span><span th:text="${interview.interviewDetails.description}"></span></p>
-                <p><span>Meeting Link:</span><span th:text="${interview.meetingLink}"></span></p>
-                <p><span>Email:</span><span th:text="${interview.interviewEmail}"></span></p>
-<!--                <p><span>Phone</span><span th:text="${interview.interviewPhone}"></span></p>-->
+        <div class="card mb-3" th:each="interview : ${interviews}">
+            <h6 class="card-header">
+                <p><span>Interview Date: </span><span th:text="${interview.interviewDate}"></span></p>
+                <p><span>Interview type: </span><span th:text="${interview.interviewType}"></span></p>
             </h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span>Meeting Link: </span><span th:text="${interview.meetingLink}"></span></li>
+                <li class="list-group-item"><span>Email: </span><span th:text="${interview.interviewEmail}"></span></span></li>
+                <li class="list-group-item"><span>Phone: </span><span th:text="${interview.interviewNumber}"></span></li>
+                <li class="list-group-item"><span>Notes: </span><span th:text="${interview.interviewDetails.description}"></span></li>
+            </ul>
         </div>
             <div class="card-footer text-muted">
-                <a  class="btn btn-dark btn-sm" href="@{'/interviews/add'}" role="button">Add interview</a>
-<!--                <a  class="btn btn-outline-dark btn-sm" href=@{'/interviews/edit'}" role="button">Edit</a>-->
-                <a  class="btn btn-outline-dark btn-sm" href="@{'/interviews/delete'}" role="button">Delete</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{'/interviews/add'}" role="button">Add Interview</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{'/interviews/delete'}" role="button">Delete</a>
             </div>
         </div>
     </div>
-
-<!--    <div class="tab-pane fade show active" id="jobNotes" role="tabpanel">-->
-<!--        <form>-->
-<!--            <div class="form-group">-->
-<!--                <label for="jobNotes">Add notes</label>-->
-<!--                <textarea class="form-control"  rows="5" placeholder="enter notes"></textarea>-->
-<!--            </div>-->
-<!--            <button type="submit" class="btn btn-dark">Save</button>-->
-<!--        </form>-->
-<!--    </div>-->
-</div>
 </body>
 </html>
