@@ -115,7 +115,7 @@ public class JobsController {
     }
 
     @RequestMapping(path = "/edit/{Id}", method = RequestMethod.POST)
-    public String processEditJobForm(@ModelAttribute @Valid Job job, @RequestParam int jobStatusId,
+    public String processEditJobForm(@ModelAttribute @Valid Job job, @RequestParam int jobStatusId, @RequestParam int companyId,
                                      Errors errors, Model model, @RequestParam String jobId) {
 
         if (errors.hasErrors()) {

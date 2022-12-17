@@ -9,10 +9,7 @@
 </head>
 <body class="container">
 <nav th:replace="fragments :: navLinks"></nav>
-
-
 <h3><span>Title: </span><span th:text="${job.title}"></span></h3>
-
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
         <a class="nav-link active" id="jobApplicatopn-tab" data-bs-toggle="tab" href="#jobApplication" aria-selected="true" role="tab">Job Application</a>
@@ -51,7 +48,7 @@
                 <p><span>Interview type: </span><span th:text="${interview.interviewType}"></span></p>
             </h6>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><span>Meeting Link: </span><span th:text="${interview.meetingLink}"></span></li>
+                <li class="list-group-item" th:if = '${!interview.meetingLink.equals("")}'><span>Meeting Link: </span><span th:text="${interview.meetingLink}"></span></li>
                 <li class="list-group-item"><span>Email: </span><span th:text="${interview.interviewEmail}"></span></span></li>
                 <li class="list-group-item"><span>Phone: </span><span th:text="${interview.interviewNumber}"></span></li>
                 <li class="list-group-item"><span>Notes: </span><span th:text="${interview.interviewDetails.description}"></span></li>
