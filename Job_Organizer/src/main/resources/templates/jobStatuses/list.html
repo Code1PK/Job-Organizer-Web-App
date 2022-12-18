@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+
+<div class="container body-content">
+    <h3>Job Statuses</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tr th:each="jobStatus : ${jobStatuses}">
+            <td th:text="${jobStatus.id}"></td>
+            <td th:text="${jobStatus.name}"></td>
+            <td><form th:action="@{${'/jobs/jobStatuses/'+jobStatus.id}}" class="col text-right" method="post">
+                <button class="btn btn-danger btn-sm"> Delete</button>
+            </form></td>
+            <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/jobStatuses/view/'+jobStatus.id}}" role="button">View</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

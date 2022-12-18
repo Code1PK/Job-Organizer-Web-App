@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+<h3>Delete Job Application</h3>
+<form method="post">
+    <th:block th:each="job : ${jobs}">
+        <div class="form-group">
+            <label>
+                <p><span th:text="${job.title}"></span>
+                    <span>, </span>
+                    <span th:text="${job.company}"></span>
+                    <input type="checkbox" name="jobIds" th:value="${job.id}"></p>
+            </label>
+        </div>
+    </th:block>
+    <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+</body>
+</html>

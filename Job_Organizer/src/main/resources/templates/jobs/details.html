@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+<h3><span>Title: </span><span th:text="${job.title}"></span></h3>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="jobApplicatopn-tab" data-bs-toggle="tab" href="#jobApplication" aria-selected="true" role="tab">Job Application</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="interview-tab" data-bs-toggle="tab" href="#interview" aria-selected="false" role="tab">Interview</a>
+    </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade show active" id="jobApplication" role="tabpanel">
+        <div class="card mb-3">
+            <h6 class="card-header">
+                <p><span>Company: </span><span th:text="${job.company}"></span></p>
+                <p><span>Location: </span><span th:text="${job.location}"></span></p>
+                <p><span>Job Status: </span><span th:text="${#objects.nullSafe(job?.jobStatus?.name,'')}"></span></p>
+            </h6>
+            <div class="card-body">
+                <span class="card-text">Description: </span>
+                <span th:text="${job.description}"></span>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span>URL: </span>
+                    <span th:text="${job.jobUrl}" th:href="@{job.jobUrl}"></span></li>
+            </ul>
+            <div class="card-footer text-muted">
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/edit/'+job.id}}" role="button">Edit</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/delete'}}" role="button">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="interview" role="tabpanel">
+        <div class="card mb-3" th:each="interview : ${interviews}">
+            <h6 class="card-header">
+                <p><span>Interview Date: </span><span th:text="${interview.interviewDate}"></span></p>
+                <p><span>Interview type: </span><span th:text="${interview.interviewType}"></span></p>
+            </h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:if = '${!interview.meetingLink.equals("")}'><span>Meeting Link: </span><span th:text="${interview.meetingLink}"></span></li>
+                <li class="list-group-item"><span>Email: </span><span th:text="${interview.interviewEmail}"></span></span></li>
+                <li class="list-group-item"><span>Phone: </span><span th:text="${interview.interviewNumber}"></span></li>
+                <li class="list-group-item"><span>Notes: </span><span th:text="${interview.interviewDetails.description}"></span></li>
+            </ul>
+        </div>
+            <div class="card-footer text-muted">
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{'/interviews/add'}" role="button">Add Interview</a>
+                <a  class="btn btn-outline-dark btn-sm" th:href="@{'/interviews/delete'}" role="button">Delete</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
