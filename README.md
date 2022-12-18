@@ -52,9 +52,9 @@ This idea came from our user experience, the User is able to hold all job applic
   <ol>
     <li><b>User login: </b>Users will be able to create accounts and log in to the application.</li> 
     <li><b>Create, read, update and delete application: </b>Users will be able to create new application when logged in. The new application will appear in the user’s profile. Then users will be able to add interviews.</li>
-    <li><b>Create, read, update and delete interview: </b>Users will be able to create multiple interviews with notes, dates, and contacts in the existing application.</li>
-    <li><b>Search: </b>Users will be able to search for applications containing given text.</li>
+    <li><b>Create, read and delete interview: </b>Users will be able to create multiple interviews with notes, dates, and contacts in the existing application.</li>
     <li><b>List: </b>Users can see a list of applications and a list of interviews.</li>
+    <li><b>Search: </b>Users will be able to search for applications containing given text.</li>
   </ol>
 
 <!-- ROADMAP -->
@@ -63,8 +63,11 @@ This idea came from our user experience, the User is able to hold all job applic
 
 - [x] Add Log In page
 - [x] Add Sign Up page
-- [ ] Add Create Job Application form
-- [ ] Add a List of Jobs
+- [x] Add Create Job Application form
+- [x] Add List of Jobs
+- [x] Add Create Interview form
+- [x] Add List of Interviews
+- [ ] Add Search page
   
   <!-- LICENSE -->
 <h2 id="license"> :scroll: License</h2>
