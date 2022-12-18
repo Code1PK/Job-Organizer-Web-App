@@ -31,7 +31,7 @@
     <tr th:each="interview : ${interviews}">
         <td th:text="${interview.interviewDate}"></td>
         <td th:text="${interview.job.title}"></td>
-        <td th:text="${interview.company}"></td>
+        <td th:text="${interview.job.company}"></td>
     </tr>
 </table>
 </body>

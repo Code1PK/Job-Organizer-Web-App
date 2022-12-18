@@ -24,7 +24,7 @@
             <h6 class="card-header">
                 <p><span>Company: </span><span th:text="${job.company}"></span></p>
                 <p><span>Location: </span><span th:text="${job.location}"></span></p>
-                <p><span>Job Status: </span><span th:text="${job.jobStatus.name}"></span></p>
+                <p><span>Job Status: </span><span th:text="${#objects.nullSafe(job?.jobStatus?.name,'')}"></span></p>
             </h6>
             <div class="card-body">
                 <span class="card-text">Description: </span>

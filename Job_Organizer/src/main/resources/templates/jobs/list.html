@@ -24,7 +24,7 @@
     <tr th:each="job : ${jobs}">
         <td th:text="${job.company}"></td>
         <td th:text="${job.title}"></td>
-        <td th:text="${job.jobStatus.name}"></td>
+        <td th:text="${#objects.nullSafe(job?.jobStatus?.name,'')}"></td>
         <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/details/'+job.id}}" role="button">View</a></td>
     </tr>
     </tbody>
