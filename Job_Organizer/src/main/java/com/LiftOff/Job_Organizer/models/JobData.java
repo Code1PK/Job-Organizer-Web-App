@@ -4,42 +4,42 @@ import java.util.ArrayList;
 
 public class JobData {
 
-    public static ArrayList<Job> findByColumnAndValue(String column, String value, Iterable<Job> allJobs) {
-
-        ArrayList<Job> results = new ArrayList<>();
-
-        if (value.toLowerCase().equals("all")){
-            return (ArrayList<Job>) allJobs;
-        }
-
-        if (column.equals("all")){
-            results = findByValue(value, allJobs);
-            return results;
-        }
-        for (Job job : allJobs) {
-
-            String aValue = getFieldValue(job, column);
-
-            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
-                results.add(job);
-            }
-        }
-
-        return results;
-    }
-
-    public static String getFieldValue(Job job, String fieldName){
-        String theValue;
-        if (fieldName.equals("title")){
-            theValue = job.getTitle();
-        } else if (fieldName.equals("company")){
-            theValue = job.getCompany().toString();
-        } else {
-            theValue = job.getLocation().toString();
-        }
-
-        return theValue;
-    }
+//    public static ArrayList<Job> findByColumnAndValue(String value, Iterable<Job> allJobs) {
+//
+//        ArrayList<Job> results = new ArrayList<>();
+//
+//        if (value.toLowerCase().equals("all")){
+//            return (ArrayList<Job>) allJobs;
+//        }
+//
+//        if (column.equals("all")){
+//            results = findByValue(value, allJobs);
+//            return results;
+//        }
+//        for (Job job : allJobs) {
+//
+//            String aValue = getFieldValue(job, column);
+//
+//            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+//                results.add(job);
+//            }
+//        }
+//
+//        return results;
+//    }
+//
+//    public static String getFieldValue(Job job, String fieldName){
+//        String theValue;
+//        if (fieldName.equals("title")){
+//            theValue = job.getTitle();
+//        } else if (fieldName.equals("company")){
+//            theValue = job.getCompany().toString();
+//        } else {
+//            theValue = job.getLocation().toString();
+//        }
+//
+//        return theValue;
+//    }
 
     /**
      * Search all Job fields for the given term.
@@ -48,7 +48,7 @@ public class JobData {
      * @param allJobs The list of jobs to search.
      * @return      List of all jobs with at least one field containing the value.
      */
-    public static ArrayList<Job> findByValue(String value, Iterable<Job> allJobs) {
+    public static ArrayList<Job> findByJobValue(String value, Iterable<Job> allJobs) {
         String lower_val = value.toLowerCase();
 
         ArrayList<Job> results = new ArrayList<>();
@@ -69,4 +69,44 @@ public class JobData {
 
         return results;
     }
+    public static ArrayList<Company> findByCompanyValue(String value, Iterable<Company> allCompanies) {
+        String lower_val = value.toLowerCase();
+
+        ArrayList<Company> results = new ArrayList<>();
+
+        for (Company company : allCompanies) {
+
+            if (company.getName().toLowerCase().contains(lower_val)) {
+                results.add(company);
+            } else if (company.toString().toLowerCase().contains(lower_val)) {
+                results.add(company);
+            }
+
+        }
+
+        return results;
+    }
+
+    public static ArrayList<Interview> findByInterviewValue(String value, Iterable<Interview> allInterviews) {
+        String lower_val = value.toLowerCase();
+
+        ArrayList<Interview> results = new ArrayList<>();
+
+        for (Interview interview : allInterviews) {
+
+            if (interview.getTitle().toLowerCase().contains(lower_val)) {
+                results.add(interview);
+            } else if (interview.getCompany().toString().toLowerCase().contains(lower_val)) {
+                results.add(interview);
+            } else if (interview.getLocation().toString().toLowerCase().contains(lower_val)) {
+                results.add(interview);
+            } else if (interview.toString().toLowerCase().contains(lower_val)) {
+                results.add(interview);
+            }
+
+        }
+
+        return results;
+    }
+
 }

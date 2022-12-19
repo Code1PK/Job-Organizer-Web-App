@@ -32,7 +32,7 @@ public class Customer {
     private String password;
 
     public int getId() {
-        return id;
+        return getId();
     }
 
     public void setId(int id) {
