@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Job Organizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/jobs.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<nav th:replace="fragments :: navLinks"></nav>
+
+<div class="container body-content">
+
+    <h3 th:text="${#strings.capitalizeWords(title)}"></h3>
+
+    <form th:action="@{/search/results}" method = "post">
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+            <input type="text" class="form-control" name="searchTerm" placeholder="Enter Keyword" aria-describedby="basic-addon1">
+        </div>
+
+        <table class="table table-hover">
+<!--            <thead>-->
+<!--&lt;!&ndash;            th:if = "${jobs.size() > 1}"&ndash;&gt;-->
+<!--            <tr>-->
+<!--                <th scope="col">Company</th>-->
+<!--                <th scope="col">Title</th>-->
+<!--                <th scope="col"></th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+            <tbody>
+            <tr th:each="job : ${jobs}">
+                <td th:text="${job.company}"></td>
+                <td th:text="${job.title}"></td>
+                <td><a  class="btn btn-outline-dark btn-sm" th:href="@{${'/jobs/details/'+job.id}}" role="button">View</a></td>
+            </tr>
+            </tbody>
+        </table>
+<!--        <p th:unless = "${jobs.size()}">Use Other Keyword</p>-->
+    </form>
+</div>
+</body>
+</html>
